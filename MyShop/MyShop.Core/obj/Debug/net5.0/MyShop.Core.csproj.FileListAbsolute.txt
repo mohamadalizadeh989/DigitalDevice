@@ -1,0 +1,17 @@
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.Core.deps.json
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.Core.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\ref\MyShop.Core.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.Core.pdb
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.DataEf.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.Domain.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.DataEf.pdb
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\bin\Debug\net5.0\MyShop.Domain.pdb
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.csproj.AssemblyReference.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.GeneratedMSBuildEditorConfig.editorconfig
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.AssemblyInfoInputs.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.AssemblyInfo.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.csproj.CoreCompileInputs.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.csproj.CopyComplete
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\ref\MyShop.Core.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Core\obj\Debug\net5.0\MyShop.Core.pdb
