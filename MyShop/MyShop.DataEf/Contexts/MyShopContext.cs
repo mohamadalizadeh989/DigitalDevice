@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 using MyShop.Domain.Entities.Orders;
 using MyShop.Domain.Entities.Products;
 using MyShop.Domain.Entities.Users;
@@ -28,26 +22,26 @@ namespace MyShop.DataEf.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var date = new DateTime(2021, 11, 20, 09, 57, 00);
+            var date = new DateTime(2021, 10, 27, 17, 35, 00);
             modelBuilder.Entity<ProductGroup>().HasData(new ProductGroup
             {
                 Id = 1,
                 Title = "گروه اصلی",
                 CreateDate = date
             });
-
             modelBuilder.Entity<User>().HasData(new User
             {
                 Id = 1,
                 Mobile = "09121425058",
                 Email = "mohamadalizadeh989@gmail.com",
-                Password = "APQYv1fPpD9GejqGh1qtaxPcc6ioAt8NdaJd85F2/ZoTQHdSADUu91NxflyVMIvceg==", //1234
+                Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", // 1234
                 FullName = "Mohammad Alizadeh",
                 CreateDate = date,
                 EmailConfirm = true,
-                IsActive = true
+                IsActive = true,
             });
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

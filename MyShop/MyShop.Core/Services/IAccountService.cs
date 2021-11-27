@@ -14,5 +14,6 @@ namespace MyShop.Core.Services
         Task<bool> IsDuplicatedEmail(string email);
         Task<UserDetailVm> GetUserByEmailAsync(string email);
         Task<UserDetailVm> GetUserByIdAsync(int userId);
+
     }
 }

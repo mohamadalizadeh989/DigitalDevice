@@ -156,3 +156,4 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\ref\MyShop.Web.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.genruntimeconfig.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Login - Copy.cshtml.g.cs

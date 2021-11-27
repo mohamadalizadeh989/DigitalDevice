@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyShop.DataEf.Migrations
 {
-    public partial class InitialDataBase : Migration
+    public partial class EditPasswordDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -151,6 +151,16 @@ namespace MyShop.DataEf.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "ProductGroups",
+                columns: new[] { "Id", "CreateDate", "LastModifyDate", "Title" },
+                values: new object[] { 1, new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified), null, "گروه اصلی" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreateDate", "Email", "EmailCode", "EmailConfirm", "FullName", "IsActive", "LastModifyDate", "Mobile", "Password" },
+                values: new object[] { 1, new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified), "mohamadalizadeh989@gmail.com", new Guid("00000000-0000-0000-0000-000000000000"), true, "Mohammad Alizadeh", true, null, "09121425058", "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId1",

@@ -7,14 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyShop.Core.Services;
+using MyShop.Core.Utilities.Security;
 using MyShop.DataEf.Contexts;
-using Shop.Core.Utilities.Security;
 
 namespace MyShop.IoC
 {
     public static class Container
     {
-        public static IServiceCollection AddIocService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddIoCServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MyShopContext>(option =>
             {
@@ -22,6 +22,7 @@ namespace MyShop.IoC
             });
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IAccountService, AccountService>();
+
             return services;
         }
     }

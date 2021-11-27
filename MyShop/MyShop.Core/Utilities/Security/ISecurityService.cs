@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shop.Core.Utilities.Security
+namespace MyShop.Core.Utilities.Security
 {
     public interface ISecurityService
     {

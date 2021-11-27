@@ -36,15 +36,12 @@
                         <div class="account-box-title text-right">ورود به دیجیتال دیوایس</div>
                         <div class="account-box-content">
                             <form asp-action="Login" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
-
                                 <div class="form-account-title">ایمیل یا شماره موبایل</div>
                                 <div class="form-account-row">
                                     <label asp-for="Email" class="input-label"><i class="now-ui-icons users_single-02"></i></label>
                                     <input asp-for="Email" class="input-field" type="email"
                                            placeholder="ایمیل یا شماره موبایل خود را وارد نمایید">
-                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
-
                                 <div class="form-account-title">
                                     کلمه عبور
                                     <a href="" class="btn-link-border form-account-link">
@@ -53,16 +50,13 @@
                                         کرده ام
                                     </a>
                                 </div>
-
                                 <div class="form-account-row">
-                                    <label asp-for="Password" class="input-label">
+                                    <label asp-for="Email" class="input-label">
                                         <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                     </label>
-                                    <input asp-for="Password" class="input-field" type="password"
+                                    <input asp-for="Email" class="input-field" type="password"
                                            placeholder="کلمه عبور خود را وارد نمایید">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
-
                                 <div class="form-account-row form-account-submit">
                                     <div class="parent-btn">
                                         <button type="submit" class="dk-btn dk-btn-info">

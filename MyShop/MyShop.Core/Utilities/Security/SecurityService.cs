@@ -1,11 +1,11 @@
 ﻿
-using Shop.Core.Utilities.Security.InternalClasses;
+using MyShop.Core.Utilities.Security.InternalClasses;
 using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Shop.Core.Utilities.Security
+namespace MyShop.Core.Utilities.Security
 {
     public class SecurityService: ISecurityService
     {    

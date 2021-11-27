@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Core.Utilities.Extensions;
+using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Users;
 using MyShop.DataEf.Contexts;
 using MyShop.Domain.Entities.Users;
-using Shop.Core.Utilities.Security;
 
 namespace MyShop.Core.Services
 {
@@ -30,7 +30,8 @@ namespace MyShop.Core.Services
 
             if (user != null)
             {
-                return _securityService.VerifyHashedPassword(user.Password, vm.Password);
+                var verifyPass= _securityService.VerifyHashedPassword(user.Password, vm.Password);
+                return verifyPass;
             }
             return false;
         }
@@ -48,15 +49,13 @@ namespace MyShop.Core.Services
         {
             var user = await _context.Users
                 .SingleOrDefaultAsync(c => c.Id == userId);
-
             return user.ToDetailViewModel();
         }
 
         public async Task<bool> IsDuplicatedEmail(string email)
         {
             email = email.Fixed();
-            var user= await _context.Users.AnyAsync(c => c.Email == email);
-            return user;
+            return await _context.Users.AnyAsync(c => c.Email == email);
         }
 
         public async Task<bool> RegisterAsync(AccountRegisterVm vm)
@@ -66,7 +65,7 @@ namespace MyShop.Core.Services
                 var hassPassword = _securityService.HashPassword(vm.Password);
                 var emailCode = Guid.NewGuid();
                 vm.Email = vm.Email.Fixed();
-                await _context.Users.AddAsync(new User
+                await _context.Users.AddAsync(new Domain.Entities.Users.User
                 {
                     Password = hassPassword,
                     CreateDate = DateTime.Now,

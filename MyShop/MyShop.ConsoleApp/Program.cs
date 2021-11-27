@@ -1,5 +1,5 @@
 ﻿using System;
-using Shop.Core.Utilities.Security;
+using MyShop.Core.Utilities.Security;
 
 namespace MyShop.ConsoleApp
 {

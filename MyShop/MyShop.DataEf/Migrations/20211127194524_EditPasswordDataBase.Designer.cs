@@ -10,8 +10,8 @@ using MyShop.DataEf.Contexts;
 namespace MyShop.DataEf.Migrations
 {
     [DbContext(typeof(MyShopContext))]
-    [Migration("20211120191623_AddUserAndGroupSeed")]
-    partial class AddUserAndGroupSeed
+    [Migration("20211127194524_EditPasswordDataBase")]
+    partial class EditPasswordDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -188,7 +188,7 @@ namespace MyShop.DataEf.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2021, 11, 20, 9, 57, 0, 0, DateTimeKind.Unspecified),
+                            CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
                             Title = "گروه اصلی"
                         });
                 });
@@ -241,14 +241,14 @@ namespace MyShop.DataEf.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2021, 11, 20, 9, 57, 0, 0, DateTimeKind.Unspecified),
+                            CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
                             Email = "mohamadalizadeh989@gmail.com",
                             EmailCode = new Guid("00000000-0000-0000-0000-000000000000"),
                             EmailConfirm = true,
                             FullName = "Mohammad Alizadeh",
                             IsActive = true,
                             Mobile = "09121425058",
-                            Password = "APQYv1fPpD9GejqGh1qtaxPcc6ioAt8NdaJd85F2/ZoTQHdSADUu91NxflyVMIvceg=="
+                            Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw=="
                         });
                 });
 

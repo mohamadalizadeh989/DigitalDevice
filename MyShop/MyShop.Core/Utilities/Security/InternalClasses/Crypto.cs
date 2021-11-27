@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Runtime.CompilerServices;
 
-namespace Shop.Core.Utilities.Security.InternalClasses
+namespace MyShop.Core.Utilities.Security.InternalClasses
 {
     internal class Crypto
     {

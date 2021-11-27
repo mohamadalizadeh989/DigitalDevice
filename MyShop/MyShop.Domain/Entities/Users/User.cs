@@ -33,17 +33,13 @@ namespace MyShop.Domain.Entities.Users
 
 
         #region Auditable
-
         public DateTime CreateDate { get; set; }
         public DateTime? LastModifyDate { get; set; }
-
         #endregion
 
         #region Relations
-
         public ICollection<Order> Orders { get; set; }
         public ICollection<ProductComment> ProductComments { get; set; }
-
         #endregion
     }
 }
