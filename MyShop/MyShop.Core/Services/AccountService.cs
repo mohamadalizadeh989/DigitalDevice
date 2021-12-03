@@ -53,7 +53,7 @@ namespace MyShop.Core.Services
             return user.ToDetailViewModel();
         }
 
-        public async Task<int> AddUser(User user)
+        public async Task<int> AddUserAsync(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -78,16 +78,18 @@ namespace MyShop.Core.Services
                 var hassPassword = _securityService.HashPassword(vm.Password);
                 var emailCode = Guid.NewGuid();
                 vm.Email = vm.Email.Fixed();
-                await _context.Users.AddAsync(new Domain.Entities.Users.User
+                User user = new User
                 {
                     UserName = vm.UserName,
                     Password = hassPassword,
+                    UserAvatar = "Default.jpg",
                     CreateDate = DateTime.Now,
                     Email = vm.Email,
                     ActiveCode = emailCode,
                     EmailConfirm = true, // Todo : Confirm by sending email (false as a default)
-                    IsActive = true,
-                });
+                    IsActive = false,
+                };
+                await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
                 return true;
             }
