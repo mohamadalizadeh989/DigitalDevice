@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MyShop.Core.Generator;
 using MyShop.Core.Utilities.Extensions;
 using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Users;
@@ -30,7 +31,7 @@ namespace MyShop.Core.Services
 
             if (user != null)
             {
-                var verifyPass= _securityService.VerifyHashedPassword(user.Password, vm.Password);
+                var verifyPass = _securityService.VerifyHashedPassword(user.Password, vm.Password);
                 return verifyPass;
             }
             return false;
@@ -52,10 +53,22 @@ namespace MyShop.Core.Services
             return user.ToDetailViewModel();
         }
 
+        public async Task<int> AddUser(User user)
+        {
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return user.Id;
+        }
+
         public async Task<bool> IsDuplicatedEmail(string email)
         {
             email = email.Fixed();
             return await _context.Users.AnyAsync(c => c.Email == email);
+        }
+
+        public async Task<bool> IsDuplicatedUserName(string userName)
+        {
+            return await _context.Users.AnyAsync(u => u.UserName == userName);
         }
 
         public async Task<bool> RegisterAsync(AccountRegisterVm vm)
@@ -67,10 +80,11 @@ namespace MyShop.Core.Services
                 vm.Email = vm.Email.Fixed();
                 await _context.Users.AddAsync(new Domain.Entities.Users.User
                 {
+                    UserName = vm.UserName,
                     Password = hassPassword,
                     CreateDate = DateTime.Now,
                     Email = vm.Email,
-                    EmailCode = emailCode,
+                    ActiveCode = emailCode,
                     EmailConfirm = true, // Todo : Confirm by sending email (false as a default)
                     IsActive = true,
                 });

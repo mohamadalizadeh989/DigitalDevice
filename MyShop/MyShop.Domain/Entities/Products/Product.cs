@@ -9,7 +9,7 @@ using MyShop.Domain.Base;
 
 namespace MyShop.Domain.Entities.Products
 {
-    public class Product : BaseEntity<int>, IAuditable
+    public class Product : BaseEntity<long>, IAuditable
     {
         public int GroupId { get; set; }
 

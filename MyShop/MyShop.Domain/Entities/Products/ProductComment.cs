@@ -11,7 +11,7 @@ namespace MyShop.Domain.Entities.Products
 {
     public class ProductComment : BaseEntity<long>, IAuditable
     {
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public int UserId { get; set; }
 
         [Required]

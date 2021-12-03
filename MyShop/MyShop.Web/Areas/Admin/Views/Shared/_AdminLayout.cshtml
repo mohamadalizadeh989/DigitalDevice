@@ -22,6 +22,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/admin/css/skins/_all-skins.min.css">
+    
+    @RenderSection("Styles",false)
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -736,6 +738,9 @@
     <script src="/admin/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/admin/js/demo.js"></script>
+
+    @RenderSection("Scripts", false)
+
 </body>
 
 </html>

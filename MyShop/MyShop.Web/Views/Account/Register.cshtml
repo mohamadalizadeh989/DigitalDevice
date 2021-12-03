@@ -25,6 +25,13 @@
     <link href="/css/main.css" rel="stylesheet" />
 </head>
 
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">دیجیتال دیوایس</a></li>
+        <li class="breadcrumb-item active" aria-current="page">عضویت در سایت </li>
+    </ul>
+</nav>
+
 <body>
     <div class="wrapper default">
         <div class="container">
@@ -35,31 +42,37 @@
                             <img src="/img/Logo2.png" alt="">
                         </a>
                         <div class="account-box-title">@ViewBag.Title</div>
-                        @*<div class="message-light">
-                                اگر قبلا با ایمیل ثبت‌نام کرده‌اید، نیاز به
-                                ثبت‌نام مجدد با شماره
-                                همراه ندارید
-                            </div>*@
                         <div class="account-box-content">
                             <form asp-action="Register" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
-                                <div class="form-account-title">ایمیل یا شماره موبایل</div>
+
+                                @*<div class="form-account-title">نام کاربری</div>*@
+                                <div class="form-account-row">
+                                    <label class="input-label" asp-for="UserName"><i class="now-ui-icons users_single-02"></i></label>
+                                    <input class="input-field" asp-for="UserName" placeholder="نام کاربری">
+                                </div>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+
+                                @*<div class="form-account-title">ایمیل یا شماره موبایل</div>*@
                                 <div class="form-account-row">
                                     <label class="input-label" asp-for="Email"><i class="now-ui-icons users_single-02"></i></label>
-                                    <input class="input-field" asp-for="Email" placeholder="ایمیل یا شماره موبایل خود را وارد نمایید">
+                                    <input class="input-field" asp-for="Email" placeholder="ایمیل یا شماره موبایل">
                                 </div>
                                 <span asp-validation-for="Email" class="text-danger"></span>
-                                <div class="form-account-title">کلمه عبور</div>
+
+                                @*<div class="form-account-title">کلمه عبور</div>*@
                                 <div class="form-account-row">
                                     <label class="input-label" asp-for="Password"><i class="now-ui-icons ui-1_lock-circle-open"></i></label>
-                                    <input class="input-field" asp-for="Password" placeholder="کلمه عبور خود را وارد نمایید">
+                                    <input class="input-field" asp-for="Password" placeholder="کلمه عبور">
                                 </div>
                                 <span asp-validation-for="Password" class="text-danger"></span>
-                                <div class="form-account-title">تکرار کلمه عبور</div>
+
+                                @*<div class="form-account-title">تکرار کلمه عبور</div>*@
                                 <div class="form-account-row">
                                     <label class="input-label" asp-for="RePassword"><i class="now-ui-icons ui-1_lock-circle-open"></i></label>
-                                    <input class="input-field" asp-for="RePassword" placeholder="تکرار کلمه عبور خود را وارد نمایید">
+                                    <input class="input-field" asp-for="RePassword" placeholder="تکرار کلمه عبور">
                                 </div>
                                 <span asp-validation-for="RePassword" class="text-danger"></span>
+
                                 <div class="form-account-agree">
                                     <label class="checkbox-form checkbox-primary">
                                         <input type="checkbox" checked="checked">

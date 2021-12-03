@@ -10,22 +10,22 @@ using MyShop.DataEf.Contexts;
 namespace MyShop.DataEf.Migrations
 {
     [DbContext(typeof(MyShopContext))]
-    [Migration("20211127194524_EditPasswordDataBase")]
-    partial class EditPasswordDataBase
+    [Migration("20211203141244_InitialDatabase")]
+    partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("MyShop.Domain.Entities.Orders.Order", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsFinalized")
@@ -60,32 +60,26 @@ namespace MyShop.DataEf.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<long?>("OrderId1")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("ProductId1")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId1");
+                    b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId1");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Products.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
@@ -144,8 +138,8 @@ namespace MyShop.DataEf.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
 
                     b.Property<byte>("Rate")
                         .HasColumnType("tinyint");
@@ -193,12 +187,33 @@ namespace MyShop.DataEf.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entities.Users.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entities.Users.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("ActiveCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -208,15 +223,8 @@ namespace MyShop.DataEf.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<Guid>("EmailCode")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("EmailConfirm")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FullName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -233,6 +241,15 @@ namespace MyShop.DataEf.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("UserAvatar")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -241,15 +258,37 @@ namespace MyShop.DataEf.Migrations
                         new
                         {
                             Id = 1,
+                            ActiveCode = new Guid("fd07bb4b-2afe-487a-af09-39fd5cfe2c34"),
                             CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
                             Email = "mohamadalizadeh989@gmail.com",
-                            EmailCode = new Guid("00000000-0000-0000-0000-000000000000"),
                             EmailConfirm = true,
-                            FullName = "Mohammad Alizadeh",
                             IsActive = true,
                             Mobile = "09121425058",
-                            Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw=="
+                            Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==",
+                            UserName = "mohamadAlizadeh989"
                         });
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Users.UserRole", b =>
+                {
+                    b.Property<int>("UR_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UR_Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Orders.Order", b =>
@@ -267,11 +306,15 @@ namespace MyShop.DataEf.Migrations
                 {
                     b.HasOne("MyShop.Domain.Entities.Orders.Order", "Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId1");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MyShop.Domain.Entities.Products.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId1");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
 
@@ -306,6 +349,25 @@ namespace MyShop.DataEf.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entities.Users.UserRole", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entities.Users.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyShop.Domain.Entities.Users.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entities.Orders.Order", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -321,11 +383,18 @@ namespace MyShop.DataEf.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entities.Users.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entities.Users.User", b =>
                 {
                     b.Navigation("Orders");
 
                     b.Navigation("ProductComments");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

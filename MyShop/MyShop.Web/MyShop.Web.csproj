@@ -10,9 +10,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -22,5 +27,4 @@
 		<ProjectReference Include="..\MyShop.Core\MyShop.Core.csproj" />
 		<ProjectReference Include="..\MyShop.IoC\MyShop.IoC.csproj" />
 	</ItemGroup>
-
 </Project>

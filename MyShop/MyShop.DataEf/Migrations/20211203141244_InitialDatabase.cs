@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyShop.DataEf.Migrations
 {
-    public partial class EditPasswordDataBase : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,18 +23,32 @@ namespace MyShop.DataEf.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleTitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    EmailCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ActiveCode = table.Column<Guid>(type: "uniqueidentifier", maxLength: 50, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     EmailConfirm = table.Column<bool>(type: "bit", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Mobile = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserAvatar = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifyDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -47,7 +61,7 @@ namespace MyShop.DataEf.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GroupId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
@@ -74,7 +88,7 @@ namespace MyShop.DataEf.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -93,12 +107,38 @@ namespace MyShop.DataEf.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserRoles",
+                columns: table => new
+                {
+                    UR_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => x.UR_Id);
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "RoleId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductComments",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<long>(type: "bigint", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Rate = table.Column<byte>(type: "tinyint", nullable: false),
@@ -131,25 +171,23 @@ namespace MyShop.DataEf.Migrations
                     ProductId = table.Column<long>(type: "bigint", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    ProductId1 = table.Column<int>(type: "int", nullable: true),
-                    OrderId1 = table.Column<long>(type: "bigint", nullable: true)
+                    Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Orders_OrderId1",
-                        column: x => x.OrderId1,
+                        name: "FK_OrderDetails_Orders_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Products_ProductId1",
-                        column: x => x.ProductId1,
+                        name: "FK_OrderDetails_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -159,18 +197,18 @@ namespace MyShop.DataEf.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "CreateDate", "Email", "EmailCode", "EmailConfirm", "FullName", "IsActive", "LastModifyDate", "Mobile", "Password" },
-                values: new object[] { 1, new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified), "mohamadalizadeh989@gmail.com", new Guid("00000000-0000-0000-0000-000000000000"), true, "Mohammad Alizadeh", true, null, "09121425058", "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==" });
+                columns: new[] { "Id", "ActiveCode", "CreateDate", "Email", "EmailConfirm", "IsActive", "LastModifyDate", "Mobile", "Password", "UserAvatar", "UserName" },
+                values: new object[] { 1, new Guid("fd07bb4b-2afe-487a-af09-39fd5cfe2c34"), new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified), "mohamadalizadeh989@gmail.com", true, true, null, "09121425058", "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", null, "mohamadAlizadeh989" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderId1",
+                name: "IX_OrderDetails_OrderId",
                 table: "OrderDetails",
-                column: "OrderId1");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_ProductId1",
+                name: "IX_OrderDetails_ProductId",
                 table: "OrderDetails",
-                column: "ProductId1");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
@@ -191,6 +229,16 @@ namespace MyShop.DataEf.Migrations
                 name: "IX_Products_ProductGroupId",
                 table: "Products",
                 column: "ProductGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_RoleId",
+                table: "UserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_UserId",
+                table: "UserRoles",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -202,10 +250,16 @@ namespace MyShop.DataEf.Migrations
                 name: "ProductComments");
 
             migrationBuilder.DropTable(
+                name: "UserRoles");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");

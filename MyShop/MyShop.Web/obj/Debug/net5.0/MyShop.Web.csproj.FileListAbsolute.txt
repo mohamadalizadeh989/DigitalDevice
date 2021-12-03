@@ -143,8 +143,12 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\_
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\SuccessRegister.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_Footer.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_MainMenu.cshtml.g.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_Styles.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
@@ -156,4 +160,3 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\ref\MyShop.Web.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.genruntimeconfig.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Login - Copy.cshtml.g.cs

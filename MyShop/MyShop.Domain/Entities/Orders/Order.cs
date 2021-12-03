@@ -8,7 +8,7 @@ using MyShop.Domain.Entities.Users;
 
 namespace MyShop.Domain.Entities.Orders
 {
-    public class Order : BaseEntity<long>
+    public class Order : BaseEntity<int>
     {
         public int UserId { get; set; }
         public DateTime RegisterDate { get; set; }

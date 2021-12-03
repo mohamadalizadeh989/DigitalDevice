@@ -15,9 +15,9 @@ namespace MyShop.Core.ViewModels.Users
             {
                 Email = user.Email,
                 CreateDate = user.CreateDate,
-                EmailCode = user.EmailCode,
+                ActiveCode = user.ActiveCode,
                 EmailConfirm = user.EmailConfirm,
-                FullName = user.FullName,
+                UserName = user.UserName,
                 Id = user.Id,
                 IsActive = user.IsActive,
                 Mobile = user.Mobile

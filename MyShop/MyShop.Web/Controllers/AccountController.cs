@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using MyShop.Core.Generator;
 using MyShop.Core.Services;
+using MyShop.Core.Utilities.Extensions;
+using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Users;
+using MyShop.Domain.Entities.Users;
 
 namespace MyShop.Web.Controllers
 {
@@ -14,10 +19,12 @@ namespace MyShop.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly ISecurityService _securityService;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, ISecurityService securityService)
         {
             _accountService = accountService;
+            _securityService = securityService;
         }
 
         [Route("login")]
@@ -66,6 +73,9 @@ namespace MyShop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AccountRegisterVm vm)
         {
+            if (await _accountService.IsDuplicatedUserName(vm.UserName))
+                ModelState.AddModelError(nameof(vm.UserName), "نام کاربری وارد شده تکراری می باشد");
+
             if (await _accountService.IsDuplicatedEmail(vm.Email))
                 ModelState.AddModelError(nameof(vm.Email), "ایمیل وارد شده تکراری می باشد");
 
@@ -74,7 +84,19 @@ namespace MyShop.Web.Controllers
                 await _accountService.RegisterAsync(vm);
                 return RedirectToAction("Index", "Home");
             }
-            return View(vm);
+
+            Domain.Entities.Users.User user = new User()
+            {
+                ActiveCode = Guid.NewGuid(),
+                Email = vm.Email.Fixed(),
+                IsActive = false,
+                Password = _securityService.HashPassword(vm.Password),
+                CreateDate = DateTime.Now,
+                UserAvatar = "Default.jpg",
+                UserName = vm.UserName
+            };
+
+            return View("SuccessRegister", user);
         }
 
         [Route("logout")]

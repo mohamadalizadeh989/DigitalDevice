@@ -14,6 +14,8 @@ namespace MyShop.DataEf.Contexts
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
@@ -35,8 +37,9 @@ namespace MyShop.DataEf.Contexts
                 Mobile = "09121425058",
                 Email = "mohamadalizadeh989@gmail.com",
                 Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", // 1234
-                FullName = "Mohammad Alizadeh",
+                UserName = "mohamadAlizadeh989",
                 CreateDate = date,
+                ActiveCode = Guid.NewGuid(),
                 EmailConfirm = true,
                 IsActive = true,
             });
