@@ -11,7 +11,7 @@ namespace MyShop.Core.ViewModels.Users
         public int Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public Guid ActiveCode { get; set; }
+        public string ActiveCode { get; set; }
         public bool EmailConfirm { get; set; }
         public string Mobile { get; set; }
         public bool IsActive { get; set; }

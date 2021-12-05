@@ -141,6 +141,7 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\H
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_AdminLayout.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\ActiveAccount.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\SuccessRegister.cshtml.g.cs

@@ -10,7 +10,12 @@ namespace MyShop.Core.Utilities.Extensions
     {
         public static string Fixed(this string input)
         {
-            return input.Trim().ToLower();
+            if (input != null)
+            {
+                return input.Trim().ToLower();
+            }
+
+            return null;
         }
     }
 }

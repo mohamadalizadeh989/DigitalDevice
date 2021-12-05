@@ -37,12 +37,15 @@ namespace MyShop.Core.ViewModels.Users
     public class AccountLoginVm
     {
         [Display(Name = "ایمیل")]
-        [EmailAddress(ErrorMessage = "{0} شما صحیح نمی باشد")]
-        [Required(ErrorMessage = "{0} را وارد کنید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کاراکتر باشد")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Display(Name = "کلمه عبور")]
-        [Required(ErrorMessage = "{0} را وارد کنید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Display(Name = "مرا به خاطر بسپار")]

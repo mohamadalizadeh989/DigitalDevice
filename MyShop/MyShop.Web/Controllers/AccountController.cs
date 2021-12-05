@@ -26,6 +26,9 @@ namespace MyShop.Web.Controllers
             _securityService = securityService;
         }
 
+
+        #region Login
+
         [Route("login")]
         public IActionResult Login()
         {
@@ -34,32 +37,45 @@ namespace MyShop.Web.Controllers
         [Route("login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(AccountLoginVm vm)
+        public async Task<IActionResult> Login(AccountLoginVm login)
         {
-            if (!await _accountService.CheckEmailAndPasswordAsync(vm))
-                ModelState.AddModelError(nameof(vm.Password), "ایمیل یا کلمه عبور صحیح نمی باشد");
+            if (!await _accountService.LoginAsync(login))
+                ModelState.AddModelError(nameof(login.Password), "ایمیل یا کلمه عبور صحیح نمی باشد");
 
             if (ModelState.IsValid)
             {
-                var user = await _accountService.GetUserByEmailAsync(vm.Email);
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                    new Claim(ClaimTypes.Email,vm.Email),
-                };
-                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var principal = new ClaimsPrincipal(identity);
-                var properties = new AuthenticationProperties
-                {
-                    IsPersistent = vm.IsRemember
-                };
-                await HttpContext.SignInAsync(principal, properties);
+                var user = await _accountService.GetUserByEmailAsync(login.Email);
 
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
+                if (user.IsActive)
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                        new Claim(ClaimTypes.Email,login.Email),
+                    };
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+                    var properties = new AuthenticationProperties
+                    {
+                        IsPersistent = login.IsRemember
+                    };
+                    await HttpContext.SignInAsync(principal, properties);
+
+                    ViewBag.IsSuccess = true;
+
+                    //return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    return View();
+                }
+
+                ModelState.AddModelError(nameof(login.Password), "حساب کاربری شما فعال نمی باشد");
             }
-            return View(vm);
+            return View(login);
         }
 
+        #endregion
+
+
+        #region Register
 
         [Route("register")]
         public IActionResult Register()
@@ -70,30 +86,46 @@ namespace MyShop.Web.Controllers
         [Route("register")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(AccountRegisterVm vm)
+        public async Task<IActionResult> Register(AccountRegisterVm register)
         {
             if (ModelState.IsValid)
             {
-                await _accountService.RegisterAsync(vm);
-                return View("SuccessRegister", vm);
+                await _accountService.RegisterAsync(register);
+                return View("SuccessRegister", register);
             }
 
-            if (await _accountService.IsDuplicatedUserName(vm.UserName))
+            if (await _accountService.IsDuplicatedUserName(register.UserName))
             {
-                ModelState.AddModelError(nameof(vm.UserName), "نام کاربری وارد شده تکراری می باشد");
-                return View(vm);
+                ModelState.AddModelError(nameof(register.UserName), "نام کاربری وارد شده تکراری می باشد");
+                return View(register);
             }
 
 
-            if (await _accountService.IsDuplicatedEmail(vm.Email.Fixed()))
+            if (await _accountService.IsDuplicatedEmail(StringExtension.Fixed(register.Email)))
             {
-                ModelState.AddModelError(nameof(vm.Email), "ایمیل وارد شده تکراری می باشد");
-                return View(vm);
+                ModelState.AddModelError(nameof(register.Email), "ایمیل وارد شده تکراری می باشد");
+                return View(register);
             }
 
             return View();
 
         }
+
+        #endregion
+
+
+        #region Active Account
+
+        public IActionResult ActiveAccount(string id)
+        {
+            ViewBag.IsActive = _accountService.ActiveAccount(id);
+            return View();
+        }
+
+        #endregion
+
+
+        #region Logout
 
         [Route("logout")]
         [Authorize]
@@ -102,5 +134,7 @@ namespace MyShop.Web.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        #endregion
     }
 }

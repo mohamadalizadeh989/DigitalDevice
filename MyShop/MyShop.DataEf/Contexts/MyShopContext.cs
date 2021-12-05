@@ -39,7 +39,7 @@ namespace MyShop.DataEf.Contexts
                 Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", // 1234
                 UserName = "mohamadAlizadeh989",
                 CreateDate = date,
-                ActiveCode = Guid.NewGuid(),
+                ActiveCode = Guid.NewGuid().ToString().Replace("-", ""),
                 EmailConfirm = true,
                 IsActive = true,
             });

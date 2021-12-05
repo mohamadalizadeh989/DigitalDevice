@@ -24,19 +24,6 @@ namespace MyShop.Core.Services
             _securityService = securityService;
         }
 
-        public async Task<bool> CheckEmailAndPasswordAsync(AccountLoginVm vm)
-        {
-            var email = vm.Email.Fixed();
-            var user = await _context.Users.SingleOrDefaultAsync(c => c.Email == email);
-
-            if (user != null)
-            {
-                var verifyPass = _securityService.VerifyHashedPassword(user.Password, vm.Password);
-                return verifyPass;
-            }
-            return false;
-        }
-
         public async Task<UserDetailVm> GetUserByEmailAsync(string email)
         {
             email = email.Fixed();
@@ -71,20 +58,20 @@ namespace MyShop.Core.Services
             return await _context.Users.AnyAsync(u => u.UserName == userName);
         }
 
-        public async Task<bool> RegisterAsync(AccountRegisterVm vm)
+        public async Task<bool> RegisterAsync(AccountRegisterVm register)
         {
             try
             {
-                var hassPassword = _securityService.HashPassword(vm.Password);
-                var emailCode = Guid.NewGuid();
-                vm.Email = vm.Email.Fixed();
+                var hassPassword = _securityService.HashPassword(register.Password);
+                var emailCode = NameGenerator.GenerateUniqCode();
+                register.Email = register.Email.Fixed();
                 User user = new User
                 {
-                    UserName = vm.UserName,
+                    UserName = register.UserName,
                     Password = hassPassword,
                     UserAvatar = "Default.jpg",
                     CreateDate = DateTime.Now,
-                    Email = vm.Email,
+                    Email = register.Email,
                     ActiveCode = emailCode,
                     EmailConfirm = true, // Todo : Confirm by sending email (false as a default)
                     IsActive = false,
@@ -99,5 +86,32 @@ namespace MyShop.Core.Services
                 return false;
             }
         }
+
+        public async Task<bool> LoginAsync(AccountLoginVm login)
+        {
+            var email = login.Email.Fixed();
+            var user = await _context.Users.SingleOrDefaultAsync(c => c.Email == email);
+
+            if (user != null)
+            {
+                var verifyPass = _securityService.VerifyHashedPassword(user.Password, login.Password);
+                return verifyPass;
+            }
+            return false;
+        }
+
+        public async Task<bool> ActiveAccount(string activeCode)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.ActiveCode == activeCode);
+            if (user == null || user.IsActive)
+                return false;
+
+            user.IsActive = true;
+            user.ActiveCode = NameGenerator.GenerateUniqCode();
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

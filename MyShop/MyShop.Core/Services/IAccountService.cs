@@ -10,13 +10,15 @@ namespace MyShop.Core.Services
 {
     public interface IAccountService
     {
-        Task<bool> RegisterAsync(AccountRegisterVm vm);
+        Task<bool> RegisterAsync(AccountRegisterVm register);
+        Task<bool> LoginAsync(AccountLoginVm login);
         Task<bool> IsDuplicatedUserName(string userName);
-        Task<bool> CheckEmailAndPasswordAsync(AccountLoginVm vm);
         Task<bool> IsDuplicatedEmail(string email);
         Task<UserDetailVm> GetUserByEmailAsync(string email);
         Task<UserDetailVm> GetUserByIdAsync(int userId);
         Task<int> AddUserAsync(User user);
+        Task<bool> ActiveAccount(string activeCode);
+
 
     }
 }

@@ -27,7 +27,7 @@
 <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">دیجیتال دیوایس</a></li>
-        <li class="breadcrumb-item active" aria-current="page">فرم ورود به سایت </li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title </li>
     </ul>
 </nav>
 
@@ -40,25 +40,33 @@
                         <a href="/" class="logo">
                             <img src="/img/logo2.png" alt="">
                         </a>
-                        <div class="account-box-title text-right">ورود به دیجیتال دیوایس</div>
+
+                        @if (ViewBag.IsSuccess == null)
+                        {
+                            <div class="account-box-title text-right">ورود به دیجیتال دیوایس</div>
+                        }
+
+                        @if (ViewBag.IsSuccess != null)
+                        {
+                            <div class="account-box-message dk-btn dk-btn-success">
+                                <p class="alert alert-success">ورود با موفقیت انجام شد</p>
+                            </div>
+
+                            <script>
+                                // Your delay in milliseconds
+                                var delay = 3000;
+                                setTimeout(function () { window.location = "https://localhost:44351/"; }, delay);
+                            </script>
+                        }
                         <div class="account-box-content">
                             <form asp-action="Login" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
 
-                                <div class="form-account-title">ایمیل یا شماره موبایل</div>
+                                @*<div class="form-account-title">ایمیل یا شماره موبایل</div>*@
                                 <div class="form-account-row">
                                     <label asp-for="Email" class="input-label"><i class="now-ui-icons users_single-02"></i></label>
                                     <input asp-for="Email" class="input-field" type="email"
                                            placeholder="ایمیل یا شماره موبایل خود را وارد نمایید">
                                     <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-
-                                <div class="form-account-title">
-                                    کلمه عبور
-                                    <a href="" class="btn-link-border form-account-link">
-                                        کلمه
-                                        عبور خود را فراموش
-                                        کرده ام
-                                    </a>
                                 </div>
 
                                 <div class="form-account-row">
@@ -70,6 +78,23 @@
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
 
+                                <br />
+
+                                <div class="form-account-agree">
+                                    <label class="checkbox-form checkbox-primary">
+                                        <input asp-for="IsRemember">
+                                        <span class="checkbox-check"></span>
+                                    </label>
+                                    <label asp-for="IsRemember">مرا به خاطر بسپار!</label>
+                                </div>
+
+                                @*<div class="form-account-title">
+                                        <a><input asp-for="ForgotPassword" class="btn-link-border">کلمه عبور خود را فراموش کرده ام!</a>
+
+                                    </div>*@
+
+                                <hr />
+
                                 <div class="form-account-row form-account-submit">
                                     <div class="parent-btn">
                                         <button type="submit" class="dk-btn dk-btn-info">
@@ -78,13 +103,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="form-account-agree">
-                                    <label class="checkbox-form checkbox-primary">
-                                        <input asp-for="IsRemember">
-                                        <span class="checkbox-check"></span>
-                                    </label>
-                                    <label asp-for="IsRemember">مرا به خاطر داشته باش</label>
-                                </div>
+
                             </form>
                         </div>
                         <div class="account-box-footer">

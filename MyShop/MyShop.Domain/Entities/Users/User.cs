@@ -31,7 +31,7 @@ namespace MyShop.Domain.Entities.Users
 
         [Display(Name = "کد فعال سازی")]
         [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        public Guid ActiveCode { get; set; }
+        public string ActiveCode { get; set; }
 
         [Display(Name = "وضعیت")]
         public bool IsActive { get; set; }

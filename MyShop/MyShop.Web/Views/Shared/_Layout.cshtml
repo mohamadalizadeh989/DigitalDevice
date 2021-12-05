@@ -46,7 +46,7 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <div class="logo-nav-res default text-center">
-                    <a href="#">
+                    <a asp-action="Index" asp-controller="Home" asp-area="">
                         <img src="/img/Logo2.png" height="36px" alt="">
                     </a>
                 </div>
@@ -254,7 +254,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                         <div class="logo-area default">
-                            <a href="#">
+                            <a asp-action="Index" asp-controller="Home" asp-area="">
                                 <img src="/img/Logo2.png" alt="">
                             </a>
                         </div>
@@ -311,16 +311,11 @@
                                     @User.Claims.First(c => c.Type == ClaimTypes.Email).Value
 
                                 </a>
-                                @*<li><a asp-area="Admin" asp-controller="Home" asp-action="Index">حساب کاربری</a></li>
-                                <li><a asp-controller="Account" asp-action="Logout">خروج</a></li>*@
+
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                                    @*<div class="dropdown-item">
-                                        <a asp-action="Login" asp-controller="Account" class="btn btn-info">ورود به دیجیتال دیوایس</a>
-                                    </div>*@
-                                    @*<div class="dropdown-item font-weight-bold">
-                                        <span>کاربر جدید هستید؟</span> <a asp-action="Register" asp-controller="Account">ثبت‌نام</a>
-                                    </div>*@
+
                                     <hr>
+
                                     <div class="dropdown-item">
                                         <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="dropdown-item-link">
                                             <i class="now-ui-icons users_single-02"></i>
@@ -422,8 +417,6 @@
         <!-- content -->
         @RenderBody()
         <!-- /content -->
-        
-
         <!-- footer -->
         <partial name="_Footer" />
         <!-- /footer -->
