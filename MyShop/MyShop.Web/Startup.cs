@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using MyShop.IoC;
 
@@ -37,7 +38,7 @@ namespace MyShop.Web
             {
                 op.LoginPath = "/auth/login";
                 op.LogoutPath = "/auth/logout";
-                op.ExpireTimeSpan = TimeSpan.FromMinutes(143200);
+                op.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
             });
             #endregion
 
@@ -51,11 +52,14 @@ namespace MyShop.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            
 
             app.UseEndpoints(endpoints =>
             {

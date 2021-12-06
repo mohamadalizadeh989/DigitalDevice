@@ -41,7 +41,7 @@ namespace MyShop.DataEf.Contexts
                 CreateDate = date,
                 ActiveCode = Guid.NewGuid().ToString().Replace("-", ""),
                 EmailConfirm = true,
-                IsActive = true,
+                IsActive = true
             });
             base.OnModelCreating(modelBuilder);
         }

@@ -51,7 +51,7 @@ namespace MyShop.Web.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                        new Claim(ClaimTypes.Email,login.Email),
+                        new Claim(ClaimTypes.Name,user.UserName),
                     };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(identity);
@@ -114,17 +114,6 @@ namespace MyShop.Web.Controllers
         #endregion
 
 
-        #region Active Account
-
-        public IActionResult ActiveAccount(string id)
-        {
-            ViewBag.IsActive = _accountService.ActiveAccount(id);
-            return View();
-        }
-
-        #endregion
-
-
         #region Logout
 
         [Route("logout")]
@@ -133,6 +122,17 @@ namespace MyShop.Web.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        #endregion
+
+
+        #region Active Account
+
+        public async Task<IActionResult> ActiveAccount(string id)
+        {
+            ViewBag.IsActive = await _accountService.ActiveAccount(id);
+            return View();
         }
 
         #endregion

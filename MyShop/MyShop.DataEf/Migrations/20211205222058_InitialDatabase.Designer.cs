@@ -10,7 +10,7 @@ using MyShop.DataEf.Contexts;
 namespace MyShop.DataEf.Migrations
 {
     [DbContext(typeof(MyShopContext))]
-    [Migration("20211203141244_InitialDatabase")]
+    [Migration("20211205222058_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,9 +211,9 @@ namespace MyShop.DataEf.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("ActiveCode")
+                    b.Property<string>("ActiveCode")
                         .HasMaxLength(50)
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -258,7 +258,7 @@ namespace MyShop.DataEf.Migrations
                         new
                         {
                             Id = 1,
-                            ActiveCode = new Guid("fd07bb4b-2afe-487a-af09-39fd5cfe2c34"),
+                            ActiveCode = "d39b06f07e69425485a0e070bdbd3c96",
                             CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
                             Email = "mohamadalizadeh989@gmail.com",
                             EmailConfirm = true,

@@ -43,7 +43,7 @@ namespace MyShop.DataEf.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    ActiveCode = table.Column<Guid>(type: "uniqueidentifier", maxLength: 50, nullable: false),
+                    ActiveCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     EmailConfirm = table.Column<bool>(type: "bit", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -198,7 +198,7 @@ namespace MyShop.DataEf.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "ActiveCode", "CreateDate", "Email", "EmailConfirm", "IsActive", "LastModifyDate", "Mobile", "Password", "UserAvatar", "UserName" },
-                values: new object[] { 1, new Guid("fd07bb4b-2afe-487a-af09-39fd5cfe2c34"), new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified), "mohamadalizadeh989@gmail.com", true, true, null, "09121425058", "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", null, "mohamadAlizadeh989" });
+                values: new object[] { 1, "d39b06f07e69425485a0e070bdbd3c96", new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified), "mohamadalizadeh989@gmail.com", true, true, null, "09121425058", "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", null, "mohamadAlizadeh989" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId",

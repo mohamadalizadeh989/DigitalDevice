@@ -256,7 +256,7 @@ namespace MyShop.DataEf.Migrations
                         new
                         {
                             Id = 1,
-                            ActiveCode = "0654fa2db6694b1f9615acbaa8a7f9aa",
+                            ActiveCode = "d39b06f07e69425485a0e070bdbd3c96",
                             CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
                             Email = "mohamadalizadeh989@gmail.com",
                             EmailConfirm = true,
