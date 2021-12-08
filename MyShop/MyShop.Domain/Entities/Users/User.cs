@@ -61,5 +61,6 @@ namespace MyShop.Domain.Entities.Users
         public ICollection<ProductComment> ProductComments { get; set; }
         public virtual List<UserRole> UserRoles { get; set; }
         #endregion
+
     }
 }

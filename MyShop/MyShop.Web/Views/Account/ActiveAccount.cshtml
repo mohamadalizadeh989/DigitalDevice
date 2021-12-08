@@ -10,15 +10,13 @@
     </ul>
 </nav>
 
-<p>حساب کاربری شما با موفقیت فعال شد</p>
-
-@*<div class="container">
+<div class="container">
     @if (ViewBag.IsActive)
     {
-        <div class="alert alert-success">
+        <div class="alert alert-info">
             <p>حساب کاربری شما با موفقیت فعال شد</p>
             <p>
-                <a asp-action="Login" asp-controller="Account" asp-area="" class="btn-link-border">ورود به سایت</a>
+                <a asp-action="Login" asp-controller="Account" asp-area="" class="btn-link-spoiler">ورود به سایت</a>
             </p>
         </div>
     }
@@ -29,4 +27,4 @@
         </div>
     }
 
-</div>*@
+</div>

@@ -9,3 +9,4 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.csproj.C
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\ref\MyShop.Domain.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.pdb
+G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.csproj.AssemblyReference.cache

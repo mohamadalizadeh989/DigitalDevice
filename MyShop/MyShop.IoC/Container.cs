@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyShop.Core.Services;
+using MyShop.Core.Utilities.Convertors;
 using MyShop.Core.Utilities.Security;
 using MyShop.DataEf.Contexts;
 
@@ -22,6 +23,7 @@ namespace MyShop.IoC
             });
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IViewRenderService, RenderViewToString>();
 
             return services;
         }

@@ -1,0 +1,61 @@
+﻿@model MyShop.Core.ViewModels.Users.UserDetailVm
+
+<html class="center-block">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<br />
+<table width="50%">
+    <tr>
+        <td align="center" style="background-color:cadetblue">
+            <span style="font-size:25px;">   به دیجیتال دیوایس خوش آمدید  </span>
+            <br />
+            <br />
+        </td>
+
+    </tr>
+
+    <tr align="center">
+        <td>
+            <br />
+            <br />
+            @Model.UserName عزیز!
+            <br />
+            <br />
+            با تشکر از ثبت نام شما در دیجیتال دیوایس، جهت ادامه کار میبایست حساب کاربری خود را فعال کنید
+            <br />
+            <a href="https://localhost:44351/Auth/Account/@Model.ActiveCode">
+                فعالسازی حساب کاربری
+            </a>
+
+            @*Regards,*@
+            <br />
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="background-color: cadetblue">
+            <br />
+            <br />
+            <span style="font-size:15px;text-decoration:underline">   موفق باشید   </span>
+            <br />
+            <span style="font-size:20px;">  وبسایت دیجیتال دیوایس 24 ساعته شبانه روز پشتیبان و همراه شما میباشد  </span>
+            <br />
+            <br />
+        </td>
+
+    </tr>
+
+
+
+
+</table>
+</body>
+</html>  

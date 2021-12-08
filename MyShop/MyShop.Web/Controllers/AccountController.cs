@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using MyShop.Core.Generator;
+using MyShop.Core.Senders;
 using MyShop.Core.Services;
+using MyShop.Core.Utilities.Convertors;
 using MyShop.Core.Utilities.Extensions;
 using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Users;
@@ -19,11 +21,13 @@ namespace MyShop.Web.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly ISecurityService _securityService;
+        private readonly IViewRenderService _viewRender;
 
-        public AccountController(IAccountService accountService, ISecurityService securityService)
+        public AccountController(IAccountService accountService, ISecurityService securityService, IViewRenderService viewRender)
         {
             _accountService = accountService;
             _securityService = securityService;
+            _viewRender = viewRender;
         }
 
 
@@ -88,10 +92,9 @@ namespace MyShop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AccountRegisterVm register)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _accountService.RegisterAsync(register);
-                return View("SuccessRegister", register);
+                return View(register);
             }
 
             if (await _accountService.IsDuplicatedUserName(register.UserName))
@@ -107,8 +110,31 @@ namespace MyShop.Web.Controllers
                 return View(register);
             }
 
-            return View();
+            await _accountService.RegisterAsync(register);
 
+            #region Send Activation Email
+
+
+            var user = await _accountService.GetUserByEmailAsync(register.Email);
+            string body = _viewRender.RenderToStringAsync("_ActiveEmail", user);
+            SendEmail.Send(user.Email, "فعالسازی", body);
+
+            #endregion
+
+            return View("SuccessRegister", register);
+
+        }
+
+        #endregion
+
+
+        #region Active Account
+
+        [Route("account/{id?}")]
+        public async Task<IActionResult> ActiveAccount(string id)
+        {
+            ViewBag.IsActive = await _accountService.ActiveAccount(id);
+            return View();
         }
 
         #endregion
@@ -126,15 +152,5 @@ namespace MyShop.Web.Controllers
 
         #endregion
 
-
-        #region Active Account
-
-        public async Task<IActionResult> ActiveAccount(string id)
-        {
-            ViewBag.IsActive = await _accountService.ActiveAccount(id);
-            return View();
-        }
-
-        #endregion
     }
 }

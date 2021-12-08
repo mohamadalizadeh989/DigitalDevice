@@ -38,6 +38,7 @@ namespace MyShop.DataEf.Contexts
                 Email = "mohamadalizadeh989@gmail.com",
                 Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", // 1234
                 UserName = "mohamadAlizadeh989",
+                UserAvatar = "Default.jpg",
                 CreateDate = date,
                 ActiveCode = Guid.NewGuid().ToString().Replace("-", ""),
                 EmailConfirm = true,

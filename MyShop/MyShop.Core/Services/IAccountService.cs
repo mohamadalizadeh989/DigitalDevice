@@ -18,7 +18,5 @@ namespace MyShop.Core.Services
         Task<UserDetailVm> GetUserByIdAsync(int userId);
         Task<int> AddUserAsync(User user);
         Task<bool> ActiveAccount(string activeCode);
-
-
     }
 }

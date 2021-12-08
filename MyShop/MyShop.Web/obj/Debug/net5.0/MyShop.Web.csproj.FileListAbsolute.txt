@@ -1,3 +1,12 @@
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.csproj.AssemblyReference.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.GeneratedMSBuildEditorConfig.editorconfig
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.AssemblyInfoInputs.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.AssemblyInfo.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.csproj.CoreCompileInputs.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.MvcApplicationPartsAssemblyInfo.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.MvcApplicationPartsAssemblyInfo.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.RazorAssemblyInfo.cache
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.RazorAssemblyInfo.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\appsettings.Development.json
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\appsettings.json
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.Web.exe
@@ -10,6 +19,8 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.Web.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.Web.Views.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.Web.Views.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Humanizer.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
@@ -18,12 +29,14 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.CodeAnalysis.CS
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Identity.Client.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
@@ -39,6 +52,7 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.VisualStudio.We
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Newtonsoft.Json.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\System.Composition.AttributedModel.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\System.Composition.Convention.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\System.Composition.Hosting.dll
@@ -123,14 +137,6 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.Core.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.IoC.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.DataEf.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\MyShop.Domain.pdb
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.csproj.AssemblyReference.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.GeneratedMSBuildEditorConfig.editorconfig
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.AssemblyInfoInputs.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.AssemblyInfo.cs
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.csproj.CoreCompileInputs.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.MvcApplicationPartsAssemblyInfo.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.RazorAssemblyInfo.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.RazorAssemblyInfo.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\staticwebassets\MyShop.Web.StaticWebAssets.Manifest.cache
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\staticwebassets\MyShop.Web.StaticWebAssets.xml
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\scopedcss\bundle\MyShop.Web.styles.css
@@ -146,6 +152,7 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Login
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Account\SuccessRegister.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_ActiveEmail.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_Footer.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Views\Shared\_MainMenu.cshtml.g.cs

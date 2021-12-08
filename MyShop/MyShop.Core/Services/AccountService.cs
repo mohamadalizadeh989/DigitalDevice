@@ -112,6 +112,5 @@ namespace MyShop.Core.Services
 
             return true;
         }
-
     }
 }
