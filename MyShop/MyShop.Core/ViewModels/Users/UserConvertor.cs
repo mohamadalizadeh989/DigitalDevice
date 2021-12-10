@@ -14,6 +14,7 @@ namespace MyShop.Core.ViewModels.Users
             return new UserDetailVm
             {
                 Email = user.Email,
+                Password = user.Password,
                 CreateDate = user.CreateDate,
                 ActiveCode = user.ActiveCode,
                 EmailConfirm = user.EmailConfirm,

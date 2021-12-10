@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "داشبورد";
+    ViewData["Title"] = " پنل کاربری"+User.Identity.Name;
 }
 
 <div class="content-wrapper">
@@ -12,7 +12,7 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <a href="/"><i class="fa fa-dashboard"></i> خانه</a>
+                <a href="/"><i class="fa fa-dashboard"></i> دیجیتال دیوایس</a>
             </li>
             <li class="active">
                 <a asp-controller="Account" asp-action="Logout">خروج</a>

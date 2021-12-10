@@ -1,4 +1,4 @@
-﻿
+﻿@model MyShop.Core.ViewModels.Users.AccountRegisterVm
 @{
     ViewData["Title"] = "پایان ثبت نام";
 }
@@ -11,7 +11,7 @@
 </nav>
 
 <div class="alert alert-info">
-    <h2>کاربر عزیز !</h2>
+    <h2>@Model.UserName عزیز !</h2>
     <p>ثبت نام شما با موفقیت انجام شد ، ایمیلی حاوی لینک فعالسازی برای شما ارسال شد .</p>
     <p>جهت ادامه ثبت نام وارد ایمیل خود شوید و روی لینک کلیک کنید .</p>
 </div>

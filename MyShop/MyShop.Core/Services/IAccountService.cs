@@ -14,9 +14,13 @@ namespace MyShop.Core.Services
         Task<bool> LoginAsync(AccountLoginVm login);
         Task<bool> IsDuplicatedUserName(string userName);
         Task<bool> IsDuplicatedEmail(string email);
+        Task<bool> IsDuplicatedPassword(string pass);
         Task<UserDetailVm> GetUserByEmailAsync(string email);
+        Task<User> GetUserByActiveCodeAsync(string activeCode);
+        Task<UserDetailVm> GetUserByActiveCodeVm(string activeCode);
         Task<UserDetailVm> GetUserByIdAsync(int userId);
         Task<int> AddUserAsync(User user);
         Task<bool> ActiveAccount(string activeCode);
+        void UpdateUser(UserDetailVm user);
     }
 }

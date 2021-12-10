@@ -48,7 +48,8 @@ namespace MyShop.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = await _accountService.GetUserByEmailAsync(login.Email);
+                string fixedEmail = login.Email.Fixed();
+                var user = await _accountService.GetUserByEmailAsync(fixedEmail);
 
                 if (user.IsActive)
                 {
@@ -67,7 +68,6 @@ namespace MyShop.Web.Controllers
 
                     ViewBag.IsSuccess = true;
 
-                    //return RedirectToAction("Index", "Home", new { area = "Admin" });
                     return View();
                 }
 
@@ -150,6 +150,75 @@ namespace MyShop.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        #endregion
+
+
+        #region Forgot Password
+
+        [Route("ForgotPassword")]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordVm forgot)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(forgot);
+            }
+
+            string fixedEmail = forgot.Email.Fixed();
+            UserDetailVm user = await _accountService.GetUserByEmailAsync(fixedEmail);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "کاربری یافت نشد");
+                return View(forgot);
+            }
+
+            string bodyEmail = _viewRender.RenderToStringAsync("_ForgotPassword", user);
+            SendEmail.Send(user.Email, "بازیابی حساب کاربری", bodyEmail);
+            ViewBag.IsSuccess = true;
+
+            return View();
+        }
+
+        #endregion
+
+
+        #region Reset Password
+        [Route("account/resetPassword/{id?}")]
+        public IActionResult ResetPassword(string id)
+        {
+            return View(new ResetPasswordViewModel()
+            {
+                ActiveCode = id
+            });
+        }
+
+        [Route("account/resetPassword/{id?}")]
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel reset)
+        {
+            if (!ModelState.IsValid)
+                return View(reset);
+
+            UserDetailVm user = await _accountService.GetUserByActiveCodeVm(reset.ActiveCode);
+
+            if (user == null)
+                return NotFound();
+
+            string hashNewPassword = _securityService.HashPassword(reset.Password);
+            user.Password = hashNewPassword;
+
+            _accountService.UpdateUser(user);
+
+            return RedirectToAction("Login");
+
+        }
         #endregion
 
     }

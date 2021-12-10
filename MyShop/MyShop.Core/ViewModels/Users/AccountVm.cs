@@ -51,4 +51,31 @@ namespace MyShop.Core.ViewModels.Users
         [Display(Name = "مرا به خاطر بسپار")]
         public bool IsRemember { get; set; }
     }
+
+    public class ForgotPasswordVm
+    {
+        [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کاراکتر باشد")]
+        [EmailAddress]
+        public string Email { get; set; }
+    }
+
+    public class ResetPasswordViewModel
+    {
+        public string ActiveCode { get; set; }
+
+        [Display(Name = "کلمه عبور")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "تکرار کلمه عبور")]
+        [Required(ErrorMessage = "{0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [Compare(nameof(Password), ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        [DataType(DataType.Password)]
+        public string RePassword { get; set; }
+    }
 }

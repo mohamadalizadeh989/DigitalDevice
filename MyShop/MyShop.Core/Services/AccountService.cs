@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Core.Generator;
 using MyShop.Core.Utilities.Extensions;
@@ -24,38 +25,12 @@ namespace MyShop.Core.Services
             _securityService = securityService;
         }
 
-        public async Task<UserDetailVm> GetUserByEmailAsync(string email)
-        {
-            email = email.Fixed();
-            var user = await _context.Users
-                .SingleOrDefaultAsync(c => c.Email == email);
-
-            return user.ToDetailViewModel();
-        }
-
-        public async Task<UserDetailVm> GetUserByIdAsync(int userId)
-        {
-            var user = await _context.Users
-                .SingleOrDefaultAsync(c => c.Id == userId);
-            return user.ToDetailViewModel();
-        }
 
         public async Task<int> AddUserAsync(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user.Id;
-        }
-
-        public async Task<bool> IsDuplicatedEmail(string email)
-        {
-            email = email.Fixed();
-            return await _context.Users.AnyAsync(c => c.Email == email);
-        }
-
-        public async Task<bool> IsDuplicatedUserName(string userName)
-        {
-            return await _context.Users.AnyAsync(u => u.UserName == userName);
         }
 
         public async Task<bool> RegisterAsync(AccountRegisterVm register)
@@ -100,6 +75,54 @@ namespace MyShop.Core.Services
             return false;
         }
 
+        public void UpdateUser(UserDetailVm user)
+        {
+            User dbUser = _context.Users.SingleOrDefault(u => u.Email == user.Email);
+
+            if (dbUser != null)
+            {
+                dbUser.Password = user.Password;
+                _context.Update(dbUser);
+            }
+            _context.SaveChanges();
+        }
+
+        public async Task<bool> IsDuplicatedEmail(string email)
+        {
+            email = email.Fixed();
+            return await _context.Users.AnyAsync(c => c.Email == email);
+        }
+
+        public async Task<bool> IsDuplicatedUserName(string userName)
+        {
+            return await _context.Users.AnyAsync(u => u.UserName == userName);
+        }
+
+        public async Task<bool> IsDuplicatedPassword(string pass)
+        {
+            return await _context.Users.AnyAsync(c => c.Password == pass);
+        }
+
+        public async Task<UserDetailVm> GetUserByEmailAsync(string email)
+        {
+            email = email.Fixed();
+            var user = await _context.Users.SingleOrDefaultAsync(c => c.Email == email);
+            return user.ToDetailViewModel();
+        }
+
+        public async Task<User> GetUserByActiveCodeAsync(string activeCode)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.ActiveCode == activeCode);
+            return user;
+        }
+
+        public async Task<UserDetailVm> GetUserByIdAsync(int userId)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(c => c.Id == userId);
+
+            return user.ToDetailViewModel();
+        }
+
         public async Task<bool> ActiveAccount(string activeCode)
         {
             var user = await _context.Users.SingleOrDefaultAsync(u => u.ActiveCode == activeCode);
@@ -111,6 +134,12 @@ namespace MyShop.Core.Services
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<UserDetailVm> GetUserByActiveCodeVm(string activeCode)
+        {
+            var user = await GetUserByActiveCodeAsync(activeCode);
+            return user.ToDetailViewModel();
         }
     }
 }
