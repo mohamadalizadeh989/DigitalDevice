@@ -39,6 +39,7 @@ namespace MyShop.DataEf.Contexts
                 Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==", // 1234
                 UserName = "mohamadAlizadeh989",
                 UserAvatar = "Default.jpg",
+                Skill = "C# Programmer",
                 CreateDate = date,
                 ActiveCode = Guid.NewGuid().ToString().Replace("-", ""),
                 EmailConfirm = true,

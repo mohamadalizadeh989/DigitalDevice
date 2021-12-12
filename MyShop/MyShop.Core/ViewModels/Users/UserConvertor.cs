@@ -21,7 +21,8 @@ namespace MyShop.Core.ViewModels.Users
                 UserName = user.UserName,
                 Id = user.Id,
                 IsActive = user.IsActive,
-                Mobile = user.Mobile
+                Mobile = user.Mobile,
+                Skill = user.Skill
             };
         }
         public static IQueryable<UserDetailVm> ToDetailViewModel(this IQueryable<User> users)

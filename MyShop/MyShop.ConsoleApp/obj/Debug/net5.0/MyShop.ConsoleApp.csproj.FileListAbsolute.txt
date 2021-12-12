@@ -1,3 +1,7 @@
+G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\obj\Debug\net5.0\MyShop.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\MyShop.ConsoleApp.exe
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\MyShop.ConsoleApp.deps.json
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\MyShop.ConsoleApp.runtimeconfig.json
@@ -99,8 +103,6 @@ G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\cs\Microsoft.CodeA
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -119,7 +121,6 @@ G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win-x64\n
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
@@ -132,7 +133,6 @@ G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\MyShop.Core.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\MyShop.DataEf.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\bin\Debug\net5.0\MyShop.Domain.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\obj\Debug\net5.0\MyShop.ConsoleApp.csproj.AssemblyReference.cache
-G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\obj\Debug\net5.0\MyShop.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\obj\Debug\net5.0\MyShop.ConsoleApp.AssemblyInfoInputs.cache
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\obj\Debug\net5.0\MyShop.ConsoleApp.AssemblyInfo.cs
 G:\AspNetCor\MyShop\MyShop\MyShop.ConsoleApp\obj\Debug\net5.0\MyShop.ConsoleApp.csproj.CoreCompileInputs.cache

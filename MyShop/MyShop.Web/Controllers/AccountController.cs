@@ -97,14 +97,14 @@ namespace MyShop.Web.Controllers
                 return View(register);
             }
 
-            if (await _accountService.IsDuplicatedUserName(register.UserName))
+            if (await _accountService.IsDuplicatedUserNameAsync(register.UserName))
             {
                 ModelState.AddModelError(nameof(register.UserName), "نام کاربری وارد شده تکراری می باشد");
                 return View(register);
             }
 
 
-            if (await _accountService.IsDuplicatedEmail(StringExtension.Fixed(register.Email)))
+            if (await _accountService.IsDuplicatedEmailAsync(StringExtension.Fixed(register.Email)))
             {
                 ModelState.AddModelError(nameof(register.Email), "ایمیل وارد شده تکراری می باشد");
                 return View(register);
@@ -133,7 +133,7 @@ namespace MyShop.Web.Controllers
         [Route("account/{id?}")]
         public async Task<IActionResult> ActiveAccount(string id)
         {
-            ViewBag.IsActive = await _accountService.ActiveAccount(id);
+            ViewBag.IsActive = await _accountService.ActiveAccountAsync(id);
             return View();
         }
 
@@ -206,7 +206,7 @@ namespace MyShop.Web.Controllers
             if (!ModelState.IsValid)
                 return View(reset);
 
-            UserDetailVm user = await _accountService.GetUserByActiveCodeVm(reset.ActiveCode);
+            UserDetailVm user = await _accountService.GetUserByActiveCodeVmAsync(reset.ActiveCode);
 
             if (user == null)
                 return NotFound();

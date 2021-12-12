@@ -1,0 +1,33 @@
+﻿@using MyShop.Core.Services
+@using MyShop.Core.ViewModels.Users
+@inject IAccountService _accountService
+
+@{
+    SideBarUserPanelViewModel user = await _accountService.GetSideBarUserPanelData(User.Identity.Name);
+}
+
+<div class="box box-primary">
+    <div class="box-body box-profile">
+        <img class="profile-user-img img-responsive img-circle" src="/UserAvatar/@user.ImageName"
+             alt="User profile picture">
+
+        <h3 class="profile-username text-center">@user.UserName</h3>
+
+        <p class="text-muted text-center">مهندس نرم افزار</p>
+
+        <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+                <b>دنبال شونده</b> <a class="pull-left">1,322</a>
+            </li>
+            <li class="list-group-item">
+                <b>دنبال کننده</b> <a class="pull-left">543</a>
+            </li>
+            <li class="list-group-item">
+                <b>دوستان</b> <a class="pull-left">13,287</a>
+            </li>
+        </ul>
+
+        <a href="#" class="btn btn-primary btn-block"><b>دنبال کردن</b></a>
+    </div>
+    <!-- /.box-body -->
+</div>

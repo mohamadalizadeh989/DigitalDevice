@@ -10,17 +10,25 @@ namespace MyShop.Core.Services
 {
     public interface IAccountService
     {
+        Task<int> AddUserAsync(User user);
         Task<bool> RegisterAsync(AccountRegisterVm register);
         Task<bool> LoginAsync(AccountLoginVm login);
-        Task<bool> IsDuplicatedUserName(string userName);
-        Task<bool> IsDuplicatedEmail(string email);
-        Task<bool> IsDuplicatedPassword(string pass);
+        Task<bool> IsDuplicatedUserNameAsync(string userName);
+        Task<bool> IsDuplicatedEmailAsync(string email);
         Task<UserDetailVm> GetUserByEmailAsync(string email);
         Task<User> GetUserByActiveCodeAsync(string activeCode);
-        Task<UserDetailVm> GetUserByActiveCodeVm(string activeCode);
+        Task<UserDetailVm> GetUserByActiveCodeVmAsync(string activeCode);
+        User GetUserByUserName(string userName);
+        UserDetailVm GetUserByUserNameVm(string userName);
         Task<UserDetailVm> GetUserByIdAsync(int userId);
-        Task<int> AddUserAsync(User user);
-        Task<bool> ActiveAccount(string activeCode);
+        Task<bool> ActiveAccountAsync(string activeCode);
         void UpdateUser(UserDetailVm user);
+
+        #region User Panel
+
+        InformationUserViewModel GetUserInformationAsync(string username);
+        Task<SideBarUserPanelViewModel> GetSideBarUserPanelData(string username);
+
+        #endregion
     }
 }

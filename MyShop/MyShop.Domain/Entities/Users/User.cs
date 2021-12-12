@@ -50,6 +50,10 @@ namespace MyShop.Domain.Entities.Users
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string UserAvatar { get; set; }
 
+        [Display(Name = "مهارت")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string Skill { get; set; }
+
 
         #region Auditable
         public DateTime CreateDate { get; set; }

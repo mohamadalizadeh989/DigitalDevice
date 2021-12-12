@@ -87,20 +87,15 @@ namespace MyShop.Core.Services
             _context.SaveChanges();
         }
 
-        public async Task<bool> IsDuplicatedEmail(string email)
+        public async Task<bool> IsDuplicatedEmailAsync(string email)
         {
             email = email.Fixed();
             return await _context.Users.AnyAsync(c => c.Email == email);
         }
 
-        public async Task<bool> IsDuplicatedUserName(string userName)
+        public async Task<bool> IsDuplicatedUserNameAsync(string userName)
         {
             return await _context.Users.AnyAsync(u => u.UserName == userName);
-        }
-
-        public async Task<bool> IsDuplicatedPassword(string pass)
-        {
-            return await _context.Users.AnyAsync(c => c.Password == pass);
         }
 
         public async Task<UserDetailVm> GetUserByEmailAsync(string email)
@@ -116,6 +111,24 @@ namespace MyShop.Core.Services
             return user;
         }
 
+        public async Task<UserDetailVm> GetUserByActiveCodeVmAsync(string activeCode)
+        {
+            var user = await GetUserByActiveCodeAsync(activeCode);
+            return user.ToDetailViewModel();
+        }
+
+        public User GetUserByUserName(string userName)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.UserName == userName);
+            return user;
+        }
+
+        public UserDetailVm GetUserByUserNameVm(string userName)
+        {
+            var user = GetUserByUserName(userName);
+            return user.ToDetailViewModel();
+        }
+
         public async Task<UserDetailVm> GetUserByIdAsync(int userId)
         {
             var user = await _context.Users.SingleOrDefaultAsync(c => c.Id == userId);
@@ -123,7 +136,7 @@ namespace MyShop.Core.Services
             return user.ToDetailViewModel();
         }
 
-        public async Task<bool> ActiveAccount(string activeCode)
+        public async Task<bool> ActiveAccountAsync(string activeCode)
         {
             var user = await _context.Users.SingleOrDefaultAsync(u => u.ActiveCode == activeCode);
             if (user == null || user.IsActive)
@@ -136,10 +149,37 @@ namespace MyShop.Core.Services
             return true;
         }
 
-        public async Task<UserDetailVm> GetUserByActiveCodeVm(string activeCode)
+
+
+        #region User Panel
+
+        public InformationUserViewModel GetUserInformationAsync(string username)
         {
-            var user = await GetUserByActiveCodeAsync(activeCode);
-            return user.ToDetailViewModel();
+            var user = GetUserByUserNameVm(username);
+
+            InformationUserViewModel information = new InformationUserViewModel();
+
+            information.UserName = user.UserName;
+            information.Email = user.Email;
+            information.CreateDate = user.CreateDate;
+            information.Wallet = 0;
+
+            return information;
         }
+
+        public async Task<SideBarUserPanelViewModel> GetSideBarUserPanelData(string username)
+        {
+            var user = await _context.Users.Where(u => u.UserName == username).Select(u => new SideBarUserPanelViewModel
+            {
+                ImageName = u.UserAvatar,
+                CreateDate = u.CreateDate,
+                UserName = u.UserName,
+                Skill = u.Skill
+            }).SingleAsync();
+
+            return user;
+        }
+
+        #endregion
     }
 }
