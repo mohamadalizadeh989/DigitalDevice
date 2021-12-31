@@ -17,5 +17,10 @@ namespace MyShop.Core.Utilities.Extensions
 
             return null;
         }
+
+        public static string ToTooman(this int amount)
+        {
+            return amount.ToString("#,#");
+        }
     }
 }

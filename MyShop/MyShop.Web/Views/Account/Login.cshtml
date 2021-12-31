@@ -41,6 +41,12 @@
                             <img src="/img/logo2.png" alt="">
                         </a>
 
+                        @if (ViewBag.EditProfile == true)
+                        {
+                            <br />
+                            <div><p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">بدلیل ویرایش پروفایل و بارگزاری مجدد اطلاعات لطفا مجدد لاگین کنید</p></div>
+                        }
+
                         @if (ViewBag.IsSuccess == null)
                         {
                             <div class="account-box-title text-right">ورود به دیجیتال دیوایس</div>
@@ -48,9 +54,8 @@
 
                         @if (ViewBag.IsSuccess != null)
                         {
-                            <div class="account-box-message dk-btn dk-btn-success">
-                                <p class="alert alert-success">ورود با موفقیت انجام شد</p>
-                            </div>
+                            <br />
+                            <div><p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">ورود با موفقیت انجام شد</p></div>
 
                             <script>
                                 // Your delay in milliseconds
@@ -58,10 +63,10 @@
                                 setTimeout(function () { window.location = "https://localhost:44351/Admin"; }, delay);
                             </script>
                         }
+
                         <div class="account-box-content">
                             <form asp-action="Login" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
 
-                                @*<div class="form-account-title">ایمیل یا شماره موبایل</div>*@
                                 <div class="form-account-row">
                                     <label asp-for="Email" class="input-label"><i class="now-ui-icons users_single-02"></i></label>
                                     <input asp-for="Email" class="input-field" type="email"

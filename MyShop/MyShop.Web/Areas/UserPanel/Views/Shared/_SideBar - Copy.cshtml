@@ -1,0 +1,51 @@
+﻿@using MyShop.Core.Services
+@using MyShop.Core.Utilities.Convertors
+@using MyShop.Core.ViewModels.Users
+@inject IAccountService _accountService
+
+@{
+    SideBarUserPanelViewModel user = await _accountService.GetSideBarUserPanelDataAsync(User.Identity.Name);
+}
+
+<div class="headline">
+    <div class="box box-primary">
+        <div class="box-body profile">
+            <img class="profile-user-img img-responsive img-circle" src="/UserAvatar/@user.ImageName"
+                 alt="User profile picture">
+
+            <br />
+            <h3 class="profile-username text-center">@user.UserName</h3>
+            <br />
+
+            <p class="text-muted text-center">@user.CreateDate.ToShamsi()</p>
+
+            <br />
+
+        </div>
+    </div>
+</div>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">میز کار</h3>
+    </div>
+
+    <section>
+        @*<header><h3> میز کار </h3></header>*@
+        <div class="inner">
+            <ul>
+                <br />
+                <li><a asp-controller="UserPanel" asp-action="" asp-area=""> مشاهده حساب کابری </a></li>
+                <br />
+                <li><a href="/UserPanel/EditProfile"> ویرایش حساب کابری </a></li>
+                <br />
+                <li><a href=""> تغییر رمز عبور </a></li>
+                <br />
+                <li><a href=""> تنظیمات حساب کاربری </a></li>
+                <br />
+                <li><a asp-controller="Account" asp-action="Logout">خروج از حساب کاربری </a></li>
+                <br />
+            </ul>
+        </div>
+    </section>
+</div>

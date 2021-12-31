@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "نتیجه پرداخت";
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">دیجیتال دیوایس</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+    </ul>
+</nav>
+
+<div class="container">
+    @if (ViewBag.IsSuccess == true)
+    {
+        <div class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">
+            <h2>پرداخت با موفقیت انجام شد</h2>
+            <p> کد پیگیری : @ViewBag.Code</p>
+            <a href="https://localhost:44351/Admin/Wallet">"بازگشت به پنل کاربری"</a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger col-12 col-md-1 col-lg-11 mx-auto text-center">
+            <h2>پرداخت با شکست مواجه شد</h2>
+            <a href="https://localhost:44351/Admin/Wallet">"بازگشت به پنل کاربری"</a>
+        </div>
+    }
+</div>

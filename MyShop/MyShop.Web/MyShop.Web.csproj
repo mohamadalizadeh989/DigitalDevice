@@ -2294,8 +2294,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Areas\Admin\Data\" />
-		<Folder Include="Areas\Admin\Models\" />
+		<Folder Include="Areas\UserPanel\Data\" />
+		<Folder Include="Areas\UserPanel\Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -7642,6 +7642,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="ZarinPalSandbox" Version="2.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>

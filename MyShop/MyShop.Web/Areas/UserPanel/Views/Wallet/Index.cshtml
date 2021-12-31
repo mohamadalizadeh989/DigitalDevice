@@ -1,0 +1,157 @@
+﻿@using MyShop.Core.Utilities.Convertors
+@using MyShop.Core.Utilities.Extensions
+@using MyShop.Core.ViewModels.Wallet
+@model MyShop.Core.ViewModels.Wallet.ChargeWalletViewModel
+@{
+    ViewData["Title"] = "کیف پول شما";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <partial name="_StyleUserPanel" />
+</head>
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">دیجیتال دیوایس</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> @ViewData["Title"] </li>
+        </ul>
+    </nav>
+</div>
+
+<main class="profile-user-page default">
+    <div class="container">
+        <div class="row">
+
+            <div class="profile-page col-xl-9 col-lg-9 col-md-12 order-2">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="profile-menu hidden-md">
+                            <div class="container-fluid">
+                                <h1 class="account-box-title">اطلاعات کیف پول شما</h1>
+                            </div>
+                            <div class="account-box-content">
+
+                                <form class="form-account" asp-action="Index" method="post" asp-antiforgery="true">
+
+                                    @if (ViewBag.IsSuccess != null)
+                                    {
+                                        <div>
+                                            <p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">کیف پول شما @Model.Amount.ToTooman() شارژ شد</p>
+                                        </div>
+                                    }
+
+
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="amount"><i class="fa fa-credit-card"></i></span>
+                                                <input type="number" class="input-group-text text-right" asp-for="Amount" placeholder="مبلغ به تومان">
+                                            </div>
+
+                                            <br />
+                                        </div>
+
+                                        <div class="col-12 text-right">
+                                            <button class="btn btn-info">شارژ کیف پول</button>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+
+                                    @{
+                                        List<WalletViewModel> list = ViewBag.ListWallet as List<WalletViewModel>;
+                                    }
+
+
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>مبلغ</th>
+                                                <th>تاریخ</th>
+                                                <th>نوع تراکنش</th>
+                                                <th>شرح</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (list != null)
+                                            {
+                                                foreach (var item in list)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Amount.ToString("#,0 تومان")</td>
+                                                        <td>
+                                                            @item.DateTime.ToShamsi()
+                                                        </td>
+                                                        <td>
+                                                            @if (item.Type == 1)
+                                                            {
+                                                                <p class="text-success">واریز به حساب</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="text-danger">برداشت از حساب</p>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @item.Description
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <partial name="_SideBar" />
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+@*<table class="table table-bordered">
+        <tr>
+            <th>مبلغ</th>
+            <th>تاریخ</th>
+            <th>نوع تراکنش</th>
+            <th>شرح</th>
+        </tr>
+        @if (list != null)
+        {
+            foreach (var item in list)
+            {
+                <tr>
+                    <td>@item.Amount.ToString("#,0 تومان")</td>
+                    <td>
+                        @item.DateTime.ToShamsi()
+                    </td>
+                    <td>
+                        @if (item.Type == 1)
+                        {
+                            <p class="text-success">واریز به حساب</p>
+                        }
+                        else
+                        {
+                            <p class="text-danger">برداشت از حساب</p>
+                        }
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                </tr>
+            }
+        }
+    </table>*@

@@ -11,13 +11,15 @@ using MyShop.Domain.Entities.Products;
 
 namespace MyShop.Domain.Entities.Users
 {
-    public class User : BaseEntity<int>, IAuditable
+    public class User: IAuditable
     {
         public User()
         {
 
         }
 
+        [Key]
+        public int UserId { get; set; }
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -36,8 +38,6 @@ namespace MyShop.Domain.Entities.Users
         [Display(Name = "وضعیت")]
         public bool IsActive { get; set; }
 
-        public bool EmailConfirm { get; set; }
-
         [Required, MaxLength(150)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -54,16 +54,32 @@ namespace MyShop.Domain.Entities.Users
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Skill { get; set; }
 
+        [Display(Name = "بیوگرافی")]
+        [MaxLength(int.MaxValue, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string Bio { get; set; }
+
+        [Display(Name = "وب سایت")]
+        [MaxLength(int.MaxValue, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string WebSite { get; set; }
+
+
 
         #region Auditable
+
+        [Display(Name = "تاریخ ثبت نام")]
         public DateTime CreateDate { get; set; }
+
         public DateTime? LastModifyDate { get; set; }
+
         #endregion
 
         #region Relations
+
         public ICollection<Order> Orders { get; set; }
         public ICollection<ProductComment> ProductComments { get; set; }
-        public virtual List<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Wallet.Wallet> Wallets { get; set; }
+
         #endregion
 
     }

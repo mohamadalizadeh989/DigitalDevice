@@ -17,12 +17,13 @@ namespace MyShop.Core.ViewModels.Users
                 Password = user.Password,
                 CreateDate = user.CreateDate,
                 ActiveCode = user.ActiveCode,
-                EmailConfirm = user.EmailConfirm,
                 UserName = user.UserName,
-                Id = user.Id,
+                Id = user.UserId,
                 IsActive = user.IsActive,
                 Mobile = user.Mobile,
-                Skill = user.Skill
+                Skill = user.Skill,
+                Bio = user.Bio,
+                WebSite = user.WebSite
             };
         }
         public static IQueryable<UserDetailVm> ToDetailViewModel(this IQueryable<User> users)

@@ -1,0 +1,110 @@
+﻿@model MyShop.Core.ViewModels.Users.EditProfileViewModel
+
+@{
+    ViewData["Title"] = "ویرایش حساب کاربری";
+}
+
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">دیجیتال دیوایس</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> @ViewData["Title"] </li>
+        </ul>
+    </nav>
+</div>
+
+<main class="profile-user-page default">
+    <div class="container">
+        <div class="row">
+
+            <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <h1 class="title-tab-content">ویرایش اطلاعات شخصی</h1>
+                        </div>
+                        <div class="content-section default">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 class="title-tab-content">حساب شخصی</h1>
+                                </div>
+                            </div>
+                            <form class="form-account" asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                                
+                                @if (ViewBag.IsSuccess != null)
+                                {
+                                    <div class="alert alert-success">
+                                        اطلاعات کاربری شما با موفقیت ویرایش شد
+                                    </div>
+                                }
+                                
+
+                                <input type="hidden" asp-for="AvatarName"/>
+
+                                <div class="row">
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-account-title">نام کاربری</div>
+                                        <div class="form-account-row">
+                                            <input class="input-field text-right" type="text" asp-for="UserName" placeholder="نام کاربری خود را وارد نمایید">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-account-title">ایمیل</div>
+                                        <div class="form-account-row">
+                                            <input class="input-field text-right" type="text" asp-for="Email" placeholder="ایمیل خود را وارد نمایید">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-account-title">وب سایت</div>
+                                        <div class="form-account-row">
+                                            <input class="input-field text-right" type="text" asp-for="WebSite" placeholder="وب سایت خود را وارد نمایید">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-account-title"> موبایل</div>
+                                        <div class="form-account-row">
+                                            <input class="input-field text-right" type="text" asp-for="Mobile" placeholder="شماره موبایل خود را وارد نمایید">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="textarea-container">
+                                            <div class="form-account-title">بیوگرافی</div>
+                                            <div class="form-account-row">
+                                                <textarea class="input-field text-right" type="text" asp-for="Bio" placeholder="درباره خود بنویسید"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <p class="help-block">
+                                            آواتار
+                                        </p>
+                                        <input type="file" asp-for="UserAvatar"/>
+                                        <p>لطفا فقط تصویر انتخاب کنید</p>
+                                        <img class="thumbnail" src="/UserAvatar/@Model.AvatarName" style="max-width: 150px"/>
+                                    </div>
+
+
+                                </div>
+                                
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-info btn-lg">ذخیره</button>
+                                    <button class="btn btn-default btn-lg">انصراف</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_SideBar" />
+        </div>
+    </div>
+</main>
+

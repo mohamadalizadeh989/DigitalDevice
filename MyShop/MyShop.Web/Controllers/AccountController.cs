@@ -34,14 +34,16 @@ namespace MyShop.Web.Controllers
         #region Login
 
         [Route("login")]
-        public IActionResult Login()
+        public IActionResult Login(bool editProfile = false)
         {
+            ViewBag.EditProfile = editProfile;
             return View();
         }
+
         [Route("login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(AccountLoginVm login)
+        public async Task<IActionResult> LoginAsync(AccountLoginVm login)
         {
             if (!await _accountService.LoginAsync(login))
                 ModelState.AddModelError(nameof(login.Password), "ایمیل یا کلمه عبور صحیح نمی باشد");
@@ -90,7 +92,7 @@ namespace MyShop.Web.Controllers
         [Route("register")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(AccountRegisterVm register)
+        public async Task<IActionResult> RegisterAsync(AccountRegisterVm register)
         {
             if (!ModelState.IsValid)
             {
@@ -104,7 +106,7 @@ namespace MyShop.Web.Controllers
             }
 
 
-            if (await _accountService.IsDuplicatedEmailAsync(StringExtension.Fixed(register.Email)))
+            if (await _accountService.IsDuplicatedEmailAsync(register.Email.Fixed()))
             {
                 ModelState.AddModelError(nameof(register.Email), "ایمیل وارد شده تکراری می باشد");
                 return View(register);
@@ -131,7 +133,7 @@ namespace MyShop.Web.Controllers
         #region Active Account
 
         [Route("account/{id?}")]
-        public async Task<IActionResult> ActiveAccount(string id)
+        public async Task<IActionResult> ActiveAccountAsync(string id)
         {
             ViewBag.IsActive = await _accountService.ActiveAccountAsync(id);
             return View();
@@ -144,10 +146,10 @@ namespace MyShop.Web.Controllers
 
         [Route("logout")]
         [Authorize]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> LogoutAsync()
         {
-            await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/auth/Login");
         }
 
         #endregion
@@ -163,7 +165,7 @@ namespace MyShop.Web.Controllers
 
         [Route("ForgotPassword")]
         [HttpPost]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordVm forgot)
+        public async Task<IActionResult> ForgotPasswordAsync(ForgotPasswordVm forgot)
         {
             if (!ModelState.IsValid)
             {
@@ -201,17 +203,18 @@ namespace MyShop.Web.Controllers
 
         [Route("account/resetPassword/{id?}")]
         [HttpPost]
-        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel reset)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordViewModel reset)
         {
+            UserDetailVm user = await _accountService.GetUserByActiveCodeVmAsync(reset.ActiveCode);
+            string hashNewPassword = _securityService.HashPassword(reset.Password);
+
             if (!ModelState.IsValid)
                 return View(reset);
-
-            UserDetailVm user = await _accountService.GetUserByActiveCodeVmAsync(reset.ActiveCode);
 
             if (user == null)
                 return NotFound();
 
-            string hashNewPassword = _securityService.HashPassword(reset.Password);
             user.Password = hashNewPassword;
 
             _accountService.UpdateUser(user);
