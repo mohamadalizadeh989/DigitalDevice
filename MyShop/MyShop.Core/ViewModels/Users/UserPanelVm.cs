@@ -23,6 +23,7 @@ namespace MyShop.Core.ViewModels.Users
     public class SideBarUserPanelViewModel
     {
         public string UserName { get; set; }
+        public string Email { get; set; }
         public DateTime CreateDate { get; set; }
         public string ImageName { get; set; }
         public IFormFile UserAvatar { get; set; }

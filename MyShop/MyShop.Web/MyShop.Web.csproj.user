@@ -14,6 +14,12 @@
     <WebStackScaffolding_DbContextTypeFullName>MyShop.DataEf.Contexts.MyShopContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <Area_SelectedScaffolderID>AreaScaffolder</Area_SelectedScaffolderID>
+    <Area_SelectedScaffolderCategoryPath>root/Common</Area_SelectedScaffolderCategoryPath>
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <WebStackScaffolding_LayoutPageFile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

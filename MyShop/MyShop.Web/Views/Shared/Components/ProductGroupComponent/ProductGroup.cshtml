@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MyShop.Domain.Entities.Products.ProductGroup>
+<nav class="main-menu">
+    <div class="container">
+        @*<ul class="list float-right">
+                @foreach (var group in Model.Where(g => g.ParentId == null))
+                {
+                    <li>
+                        <a href=""> @group.GroupTitle </a>
+                        @if (Model.Any(g => g.ParentId == group.Id))
+                        {
+                            <ul>
+                                @foreach (var sub in Model.Where(g => g.ParentId == group.Id))
+                                {
+                                    <li><a href=""> @sub.GroupTitle </a></li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>*@
+
+        <ul class="list float-right">
+            @foreach (var group in Model.Where(g => g.ParentId == null))
+            {
+                <li class="list-item list-item-has-children mega-menu mega-menu-col-5">
+                    <a class="nav-link" href="#">@group.GroupTitle</a>
+
+                    @if (Model.Any(g => g.ParentId == group.GroupId))
+                    {
+                        <ul class="sub-menu nav">
+                            @foreach (var sub in Model.Where(g => g.ParentId == group.GroupId))
+                            {
+                                <li class="list-item list-item-has-children">
+                                    <i class="now-ui-icons arrows-1_minimal-left"></i>
+                                    <a class="main-list-item nav-link" href="#">@sub.GroupTitle</a>
+
+                                    <ul class="sub-menu nav">
+
+                                        <li class="list-item">
+                                            <a class="nav-link" href="#">کیف و کاور گوشی</a>
+                                        </li>
+                                        <li class="list-item">
+                                            <a class="nav-link" href="#">پاور بانک</a>
+                                        </li>
+                                        <li class="list-item">
+                                            <a class="nav-link" href="#">هندزفری،هدفون</a>
+                                        </li>
+                                        <li class="list-item">
+                                            <a class="nav-link" href="#">پایه نگهدارنده گوشی</a>
+                                        </li>
+                                        <li class="list-item list-item-has-children">
+                                            <i class="now-ui-icons arrows-1_minimal-left"></i><a class="main-list-item nav-link" href="#">گوشی موبایل</a>
+                                            <ul class="sub-menu nav">
+                                                <li class="list-item">
+                                                    <a class="nav-link" href="#">آیفون اپل</a>
+                                                </li>
+                                                <li class="list-item">
+                                                    <a class="nav-link" href="#">هوآوی</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-item">
+                                            <i class="now-ui-icons arrows-1_minimal-left"></i><a class="main-list-item nav-link" href="#">ساعت هوشمند</a>
+                                        </li>
+                                        <li class="list-item">
+                                            <i class="now-ui-icons arrows-1_minimal-left"></i><a class="main-list-item nav-link" href="#">اسپیکر بلوتوث و با سیم</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <img src="/img/1636.png" alt="">
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Reflection.Emit;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Domain.Entities.Orders;
+using MyShop.Domain.Entities.Permissions;
 using MyShop.Domain.Entities.Products;
 using MyShop.Domain.Entities.Users;
 using MyShop.Domain.Entities.Wallet;
@@ -27,6 +29,8 @@ namespace MyShop.DataEf.Contexts
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<ProductLevel> ProductLevels { get; set; }
+        public DbSet<ProductStatus> ProductStatuses { get; set; }
 
         #endregion
 
@@ -44,16 +48,24 @@ namespace MyShop.DataEf.Contexts
 
         #endregion
 
+        #region Permission
+
+        public DbSet<Permission> Permission { get; set; }
+        public DbSet<RolePermission> RolePermission { get; set; }
+
+        #endregion
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var date = new DateTime(2021, 10, 27, 17, 35, 00);
             modelBuilder.Entity<ProductGroup>().HasData(new ProductGroup
             {
-                Id = 1,
-                Title = "گروه اصلی",
+                GroupId = 1,
+                GroupTitle = "گروه اصلی",
                 CreateDate = date
             });
+
             modelBuilder.Entity<User>().HasData(new User
             {
                 UserId = 1,
@@ -64,13 +76,25 @@ namespace MyShop.DataEf.Contexts
                 UserAvatar = "Default.jpg",
                 Skill = "C# Programmer",
                 WebSite = "www.digitaldevice.com",
-                Bio = "از سال 86 تا 95 مشغول کار طراحی برد الکترونیک و برنامه نویسی با میکرو کنترلر های AVR به زبان بیسیک و کمی تجربه کار با میکروکنترلر های ARM به زبان c بودم و از سال 95 تا 1400 به صورت کامل به کار در حوزه املاک و مستغلات برای کسب تجربه در این زمینه و شناسایی نیازهای فراوان این فیلد مشغول بودم و با شروع آموزش برنامه نویسی C# و ASP.NET CORE از ابتدای سال 1400 تصمیم به انجام پروژه ها و رفع نیازهای این شغل گرفتم.rاز شروع با برنامه نویسی C# علاقه شدیدی در این زمینه برای من ایجاد شد.",
+                Bio =
+                    "از سال 86 تا 95 مشغول کار طراحی برد الکترونیک و برنامه نویسی با میکرو کنترلر های AVR به زبان بیسیک و کمی تجربه کار با میکروکنترلر های ARM به زبان c بودم و از سال 95 تا 1400 به صورت کامل به کار در حوزه املاک و مستغلات برای کسب تجربه در این زمینه و شناسایی نیازهای فراوان این فیلد مشغول بودم و با شروع آموزش برنامه نویسی C# و ASP.NET CORE از ابتدای سال 1400 تصمیم به انجام پروژه ها و رفع نیازهای این شغل گرفتم.rاز شروع با برنامه نویسی C# علاقه شدیدی در این زمینه برای من ایجاد شد.",
                 CreateDate = date,
                 ActiveCode = Guid.NewGuid().ToString().Replace("-", ""),
                 IsActive = true
             });
+
+            modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Role>().HasQueryFilter(r => !r.IsDelete);
+            modelBuilder.Entity<Product>().HasQueryFilter(r => !r.IsDelete);
+            modelBuilder.Entity<ProductGroup>().HasQueryFilter(g => !g.IsDelete);
+            modelBuilder.Entity<Role>().HasKey(r => r.RoleId);
+            modelBuilder.Entity<Permission>().HasKey(r => r.PermissionId);
+            modelBuilder.Entity<RolePermission>().HasKey(r => r.RP_Id);
+
+
             base.OnModelCreating(modelBuilder);
         }
 
     }
 }
+

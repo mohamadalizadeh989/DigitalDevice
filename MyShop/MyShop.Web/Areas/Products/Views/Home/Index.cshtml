@@ -1,0 +1,74 @@
+﻿@using MyShop.Domain.Entities.Products
+@using MyShop.Domain.Entities.Users
+@{
+    ViewData["Title"] = "لیست محصولات";
+    List<Product> products = ViewData["Products"] as List<Product>;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>لیست محصولات | خانه</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+
+
+<section class="content-header">
+    <h1>لیست محصولات</h1>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">داشبرد</li>
+    </ol>
+</section>
+<br />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                لیست محصولات سایت
+            </div>
+            <!-- /.panel-header -->
+            <div class="panel-body">
+                <div class="col-md-12" style="margin: 10px 0;">
+                    <a asp-controller="CreateProduct" asp-action="Index" asp-area="Products" class="btn btn-success">افزودن محصول جدید</a>
+                </div>
+
+                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                    <thead>
+                        <tr>
+                            <th>تصویر</th>
+                            <th>عنوان محصول</th>
+                            <th>تعداد محصول</th>
+                            <th>دستورات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in products)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="/Product/image/@item.ProductImageName" class="thumbnail" style="max-width: 120px"/>
+                                </td>
+                                <td>
+                                    @item.ProductTitle
+                                </td>
+
+                                @*<td>
+                                        <a href="/Admin/Roles/EditRole/@product.ProductId" class="btn btn-info btn-sm">
+                                            ویرایش
+                                        </a>
+                                        <a href="/Admin/Roles/DeleteRole/@product.ProductId" class="btn btn-danger btn-sm">
+                                            حذف
+                                        </a>
+                                    </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

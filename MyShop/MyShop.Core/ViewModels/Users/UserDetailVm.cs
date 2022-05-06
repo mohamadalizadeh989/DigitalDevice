@@ -19,5 +19,6 @@ namespace MyShop.Core.ViewModels.Users
         public string Skill { get; set; }
         public string Bio { get; set; }
         public string WebSite { get; set; }
+        public string UserAvatar { get; internal set; }
     }
 }

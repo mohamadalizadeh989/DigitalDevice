@@ -10,6 +10,7 @@ using MyShop.Core.Services;
 using MyShop.Core.Utilities.Convertors;
 using MyShop.Core.Utilities.Security;
 using MyShop.DataEf.Contexts;
+using MyShop.Domain.Entities.Products;
 
 namespace MyShop.IoC
 {
@@ -24,6 +25,8 @@ namespace MyShop.IoC
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IViewRenderService, RenderViewToString>();
+            services.AddTransient<IPermissionService, PermissionService>();
+            services.AddTransient<IProductService, ProductService>();
 
             return services;
         }

@@ -27,7 +27,7 @@
 
 <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">دیجیتال دیوایس</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">دیجیتال دیوایس</a></li>
         <li class="breadcrumb-item active" aria-current="page">عضویت در سایت </li>
     </ul>
 </nav>
@@ -43,7 +43,7 @@
                         </a>
                         <div class="account-box-title">@ViewBag.Title</div>
                         <div class="account-box-content">
-                            <form asp-action="Register" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
+                            <form asp-action="RegisterAsync" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
 
                                 
                                 <div class="form-account-row">

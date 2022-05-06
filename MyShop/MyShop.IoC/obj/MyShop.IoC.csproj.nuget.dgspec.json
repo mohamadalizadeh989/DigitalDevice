@@ -22,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "http://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -47,21 +47,37 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.Extensions": {
               "target": "Package",
-              "version": "[5.0.12, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.AspNetCore.Mvc.ViewFeatures": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.CodeAnalysis.Common": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
+            "Microsoft.CodeAnalysis.Razor": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
             "Microsoft.VisualStudio.Threading": {
               "target": "Package",
-              "version": "[17.0.64, )"
+              "version": "[17.1.46, )"
             }
           },
           "imports": [
@@ -101,7 +117,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "http://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -130,6 +146,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[5.0.12, )"
             },
@@ -181,7 +201,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "http://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -235,7 +255,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "http://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -260,9 +280,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Analyzers": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.12, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",

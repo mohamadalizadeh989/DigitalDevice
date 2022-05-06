@@ -26,7 +26,7 @@
 
 <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">دیجیتال دیوایس</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">دیجیتال دیوایس</a></li>
         <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title </li>
     </ul>
 </nav>
@@ -60,7 +60,7 @@
                             <script>
                                 // Your delay in milliseconds
                                 var delay = 3000;
-                                setTimeout(function () { window.location = "https://localhost:44351/Admin"; }, delay);
+                                setTimeout(function () { window.location = "https://localhost:44351/UserPanel"; }, delay);
                             </script>
                         }
 

@@ -1,0 +1,17 @@
+﻿@using MyShop.Domain.Entities.Users
+@model MyShop.Domain.Entities.Users.Role
+@{
+    ViewData["Title"] = "حذف نقش";
+}
+
+<div class="container alert alert-danger">
+    <form method="post">
+        <input type="hidden" asp-for="RoleId"/>
+        <input type="hidden" asp-for="RoleTitle"/>
+        <h2>آیا از حذف نقش @Model.RoleTitle اطمینان دارید؟</h2>
+        <p>
+            <input type="submit" value="حذف" class="btn bg-maroon margin" />
+            <a asp-controller="Home" asp-action="Index" class="btn bg-olive margin">انصراف</a>
+        </p>
+    </form>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace MyShop.Core.Services
         #region User
 
         Task<int> AddUserAsync(User user);
+        Task<int> UpdateUserAsync(User user);
         Task<bool> RegisterAsync(AccountRegisterVm register);
         Task<bool> LoginAsync(AccountLoginVm login);
         Task<bool> IsDuplicatedEmailAsync(string email);
@@ -24,16 +26,21 @@ namespace MyShop.Core.Services
         Task<UserDetailVm> GetUserByActiveCodeVmAsync(string activeCode);
         User GetUserByUserName(string userName);
         UserDetailVm GetUserByUserNameVm(string userName);
-        Task<UserDetailVm> GetUserByIdAsync(int userId);
+        Task<User> GetUserByIdAsync(int userId);
+        Task<UserDetailVm> GetUserVmByIdAsync(int userId);
         Task<bool> ActiveAccountAsync(string activeCode);
         void UpdateUser(UserDetailVm user);
         int GetUserIdByUserName(string userName);
+        Task<bool> ExistAsync(int id);
+        Task<bool> DeleteUserAsync(int userId);
+        Task<bool> ReturnUserFromListDeleteUsersAsync(int userId);
 
         #endregion
 
         #region User Panel
 
         InformationUserViewModel GetUserInformation(string username);
+        Task<InformationUserViewModel> GetUserInformationAsync(int userId);
         Task<SideBarUserPanelViewModel> GetSideBarUserPanelDataAsync(string username);
         Task<EditProfileViewModel> GetDataForEditProfileUserAsync(string username);
         Task<bool> EditProfileAsync(string userName, EditProfileViewModel profile);
@@ -52,5 +59,16 @@ namespace MyShop.Core.Services
         void UpdateWallet(Wallet wallet);
 
         #endregion
+
+        #region Admin Panel
+
+        UserForAdminViewModel GetUsers(string userName,int pageId = 1, string filterEmail = "", string filterUserName = "");
+        UserForAdminViewModel GetDeleteUsers(string userName,int pageId = 1, string filterEmail = "", string filterUserName = "");
+        Task<int> AddUserFromAdminAsync(CreateUserViewModel user);
+        Task<EditUserViewModel> GetUserForShowInEditModeAsync(int userId);
+        Task<int> EditUserFromAdminAsync(EditUserViewModel editUser);
+
+        #endregion
+
     }
-}
+}   

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShop.Core.Services;
 
 namespace MyShop.Web.Controllers
@@ -10,10 +11,12 @@ namespace MyShop.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IProductService _productService;
 
-        public HomeController(IAccountService accountService)
+        public HomeController(IAccountService accountService, IProductService productService)
         {
             _accountService = accountService;
+            _productService = productService;
         }
 
         public IActionResult Index()
@@ -45,6 +48,20 @@ namespace MyShop.Web.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult GetSubGroups(int id)
+        {
+            List<SelectListItem> list = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Text = "انتخاب کنید",
+                    Value = ""
+                }
+            };
+            list.AddRange(_productService.GetSubGroupForManageProduct(id));
+            return Json(new SelectList(list, "Value", "Text"));
         }
     }
 }

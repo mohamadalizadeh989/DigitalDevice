@@ -212,9 +212,6 @@ namespace MyShop.Web.Controllers
             if (!ModelState.IsValid)
                 return View(reset);
 
-            if (user == null)
-                return NotFound();
-
             user.Password = hashNewPassword;
 
             _accountService.UpdateUser(user);

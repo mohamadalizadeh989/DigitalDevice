@@ -62,6 +62,8 @@ namespace MyShop.Domain.Entities.Users
         [MaxLength(int.MaxValue, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string WebSite { get; set; }
 
+        public bool IsDelete { get; set; }
+
 
 
         #region Auditable

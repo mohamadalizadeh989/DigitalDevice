@@ -1,0 +1,98 @@
+﻿@using MyShop.Domain.Entities.Permissions
+@model MyShop.Core.ViewModels.Users.Roles.CreateRoleViewModel
+@{
+    ViewData["Title"] = "افزودن نقش";
+    List<Permission> permissions = ViewData["Permissions"] as List<Permission>;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>افزودن نقش جدید | کنترل پنل</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+
+
+<section class="content-header">
+    <h1>افزودن نقش جدید</h1>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">داشبرد</li>
+    </ol>
+</section>
+<br />
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <form method="post" enctype="multipart/form-data" asp-antiforgery="true">
+            <div class="col-sm-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        نقش
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>عنوان نقش</label>
+                            <input type="text" asp-for="@Model.RoleTitle" class="form-control">
+                        </div>
+                        @*<span asp-validation-for="UserName" class="text-danger"></span>*@
+
+                        <input type="submit" value="ذخیره اطلاعات" class="btn btn-success" />
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            دسترسی های نقش
+                        </div>
+
+                        <div class="panel-body">
+                            <ul>
+                                @foreach (var permission in permissions.Where(p => p.ParentID == null))
+                                {
+                                    <li>
+                                        <input type="checkbox" name="SelectedPermission" value="@permission.PermissionId" /> @permission.PermissionTitle
+                                        @if (permissions.Any(p => p.ParentID == permission.ParentID))
+                                        {
+                                            <ul>
+                                                @foreach (var sub in permissions.Where(p => p.ParentID == permission.PermissionId))
+                                                {
+                                                    <li>
+                                                        <input type="checkbox" name="SelectedPermission" value="@sub.PermissionId" /> @sub.PermissionTitle
+
+                                                        @if (permissions.Any(p => p.ParentID == sub.ParentID))
+                                                        {
+                                                            <ul>
+                                                                @foreach (var sub2 in permissions.Where(p => p.ParentID == sub.PermissionId))
+                                                                {
+                                                                <li>
+                                                                <input type="checkbox" name="SelectedPermission" value="@sub2.PermissionId" /> @sub2.PermissionTitle
+                                                                </li>
+                                                                }
+                                                            </ul>
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div asp-validation-summary="All" class="text text-danger"></div>
+    </div>
+</div>
+

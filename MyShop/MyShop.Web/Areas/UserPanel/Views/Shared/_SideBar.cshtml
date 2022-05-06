@@ -6,9 +6,12 @@
 @{
     SideBarUserPanelViewModel user = await _accountService.GetSideBarUserPanelDataAsync(User.Identity.Name);
 }
+<head>
+    <partial name="_Styles" />
 
+</head>
 
-<div class="profile-page-aside col-xl-3 col-lg-4 col-md-12 center-section order-1">
+<div class="profile-user-page col-xl-3 col-lg-4 col-md-12 center-section order-1">
     <div class="profile-box">
         <div class="profile-box-header">
             <div class="profile-box-avatar">
@@ -25,7 +28,7 @@
                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                 تغییر رمز
             </a>
-            <a asp-controller="Account" asp-action="Logout" class="profile-box-tab profile-box-tab--sign-out">
+            <a asp-controller="Account" asp-action="LogoutAsync" class="profile-box-tab profile-box-tab--sign-out">
                 <i class="now-ui-icons media-1_button-power"></i>
                 خروج از حساب
             </a>
@@ -50,14 +53,21 @@
                     <i class="now-ui-icons files_single-copy-04"></i>
                     کیف پول شما
                 </a>
-                <a href="profile-orders-return.html" class="dropdown-item">
+                <a href="#" class="dropdown-item">
                     <i class="now-ui-icons files_single-copy-04"></i>
                     تنظیمات حساب کاربری
                 </a>
-                <a href="profile-personal-info.html" class="dropdown-item">
+                <a href="#" class="dropdown-item">
                     <i class="now-ui-icons business_badge"></i>
                     محصولات خریداری شده
                 </a>
+                @if (user.Email == "mohamadalizadeh989@gmail.com")
+                    {
+                        <a href="/Admin" class="dropdown-item">
+                            <i class="now-ui-icons files_single-copy-04"></i>
+                            ورود به پنل ادمین
+                        </a>
+                    }
             </div>
         </div>
     </div>
@@ -83,19 +93,27 @@
                 </a>
             </li>
             <li>
-                <a href="profile-orders-return.html">
+                <a href="#">
                     <i class="now-ui-icons files_single-copy-04"></i>
                     تنظیمات حساب کاربری
                 </a>
             </li>
             <li>
-                <a href="profile-personal-info.html">
+                <a href="#">
                     <i class="now-ui-icons business_badge"></i>
                     محصولات خریداری شده
                 </a>
-
             </li>
-            
+            <li>
+                @if (user.Email == "mohamadalizadeh989@gmail.com")
+                {
+                    <a asp-controller="Home" asp-action="Index" asp-area="Admin">
+                        <i class="now-ui-icons business_badge"></i>
+                        ورود به پنل ادمین
+                    </a>
+                }
+            </li>
+
         </ul>
     </div>
 </div>

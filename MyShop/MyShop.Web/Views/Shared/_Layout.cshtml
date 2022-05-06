@@ -317,14 +317,14 @@
                                     <hr>
 
                                     <div class="dropdown-item">
-                                        <a asp-controller="Admin" asp-action="" asp-area="" class="dropdown-item-link">
+                                        <a asp-controller="UserPanel" asp-action="" asp-area="" class="dropdown-item-link">
                                             <i class="now-ui-icons users_single-02"></i>
                                             حساب کاربری
                                         </a>
                                     </div>
                                     <div class="dropdown-item">
                                         <a asp-controller="Account" asp-action="Logout" class="dropdown-item-link">
-                                            <i class="logo glyphicon-log-out"></i>
+                                            <i class="fa fa-sign-out"></i>
                                             خروج
                                         </a>
                                     </div>
@@ -347,7 +347,7 @@
                                     </div>
                                     <hr>
                                     <div class="dropdown-item">
-                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="dropdown-item-link">
+                                        <a asp-area="UserPanel" asp-controller="Home" asp-action="Index" class="dropdown-item-link">
                                             <i class="now-ui-icons users_single-02"></i>
                                             پروفایل
                                         </a>
@@ -410,7 +410,7 @@
                 </div>
             </div>
             <!-- main menu -->
-            <partial name="_MainMenu" />
+            @await Component.InvokeAsync("ProductGroupComponent")
             <!-- /main menu -->
         </header>
 
@@ -423,9 +423,9 @@
 
     </div>
 
-    @RenderSection("Scripts", false)
+@await RenderSectionAsync("Scripts", false)
 
-    <!--   Core JS Files   -->
+<!--   Core JS Files   -->
     <script src="/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="/js/core/popper.min.js" type="text/javascript"></script>
     <script src="/js/core/bootstrap.min.js" type="text/javascript"></script>

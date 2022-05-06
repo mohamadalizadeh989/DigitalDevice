@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Core.Generator;
+using MyShop.Core.Services;
 using MyShop.Core.Utilities.Extensions;
 using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Users;
@@ -14,7 +16,6 @@ using MyShop.Core.ViewModels.Wallet;
 using MyShop.DataEf.Contexts;
 using MyShop.Domain.Entities.Users;
 using MyShop.Domain.Entities.Wallet;
-using TopLearn.Core.Security;
 
 namespace MyShop.Core.Services
 {
@@ -39,6 +40,13 @@ namespace MyShop.Core.Services
             return user.UserId;
         }
 
+        public async Task<int> UpdateUserAsync(User user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return user.UserId;
+        }
+
         public async Task<bool> RegisterAsync(AccountRegisterVm register)
         {
             try
@@ -56,8 +64,7 @@ namespace MyShop.Core.Services
                     ActiveCode = emailCode,
                     IsActive = false // Todo : Confirm by sending email (false as a default)
                 };
-                await _context.Users.AddAsync(user);
-                await _context.SaveChangesAsync();
+                await AddUserAsync(user);
                 return true;
             }
             catch
@@ -94,6 +101,29 @@ namespace MyShop.Core.Services
         public int GetUserIdByUserName(string userName)
         {
             return _context.Users.Single(u => u.UserName == userName).UserId;
+        }
+
+        public async Task<bool> ExistAsync(int id)
+        {
+            return await _context.Users.AnyAsync(u => u.UserId == id);
+        }
+
+        public async Task<bool> DeleteUserAsync(int userId)
+        {
+            User user = await GetUserByIdAsync(userId);
+            user.IsDelete = true;
+            user.IsActive = false;
+            await UpdateUserAsync(user);
+            return true;
+        }
+
+        public async Task<bool> ReturnUserFromListDeleteUsersAsync(int userId)
+        {
+            User user = await GetUserByIdAsync(userId);
+            user.IsDelete = false;
+            user.IsActive = true;
+            await UpdateUserAsync(user);
+            return true;
         }
 
         public async Task<bool> IsDuplicatedEmailAsync(string email)
@@ -138,7 +168,13 @@ namespace MyShop.Core.Services
             return user.ToDetailViewModel();
         }
 
-        public async Task<UserDetailVm> GetUserByIdAsync(int userId)
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            var userById = await _context.Users.FindAsync(userId);
+            return userById;
+        }
+
+        public async Task<UserDetailVm> GetUserVmByIdAsync(int userId)
         {
             var user = await _context.Users.SingleOrDefaultAsync(c => c.UserId == userId);
 
@@ -181,6 +217,24 @@ namespace MyShop.Core.Services
             return information;
         }
 
+        public async Task<InformationUserViewModel> GetUserInformationAsync(int userId)
+        {
+            var user = await GetUserByIdAsync(userId);
+
+            InformationUserViewModel information = new InformationUserViewModel
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                CreateDate = user.CreateDate,
+                Wallet = BalanceUserWallet(user.UserName),
+                WebSite = user.WebSite,
+                Mobile = user.Mobile,
+                Bio = user.Bio
+            };
+
+            return information;
+        }
+
         public async Task<SideBarUserPanelViewModel> GetSideBarUserPanelDataAsync(string username)
         {
             var user = await _context.Users.Where(u => u.UserName == username).Select(u => new SideBarUserPanelViewModel
@@ -188,6 +242,7 @@ namespace MyShop.Core.Services
                 ImageName = u.UserAvatar,
                 CreateDate = u.CreateDate,
                 UserName = u.UserName,
+                Email = u.Email
             }).SingleAsync();
 
             return user;
@@ -327,6 +382,158 @@ namespace MyShop.Core.Services
         {
             _context.Wallets.Update(wallet);
             _context.SaveChanges();
+        }
+
+        #endregion
+
+        #region Admin Panel
+
+        public UserForAdminViewModel GetUsers(string userName, int pageId = 1, string filterEmail = "", string filterUserName = "")
+        {
+            IQueryable<User> result = _context.Users;
+            var user = GetUserByUserNameVm(userName);
+
+            if (!string.IsNullOrEmpty(filterEmail))
+            {
+                result = result.Where(u => u.Email.Contains(filterEmail));
+            }
+
+            if (!string.IsNullOrEmpty(filterUserName))
+            {
+                result = result.Where(u => u.UserName.Contains(filterUserName));
+            }
+
+            //Show Item In Page
+            int take = 20;
+            int skip = (pageId - 1) * take;
+
+            UserForAdminViewModel list = new UserForAdminViewModel();
+            list.CurrentPage = pageId;
+            list.PageCount = result.Count() / take;
+            list.Users = result.OrderBy(u => u.CreateDate).Skip(skip).Take(take).ToList();
+
+            return list;
+        }
+
+        public UserForAdminViewModel GetDeleteUsers(string userName, int pageId = 1, string filterEmail = "",
+            string filterUserName = "")
+        {
+            IQueryable<User> result = _context.Users.IgnoreQueryFilters().Where(u=>u.IsDelete);
+            
+            var user = GetUserByUserNameVm(userName);
+
+            if (!string.IsNullOrEmpty(filterEmail))
+            {
+                result = result.Where(u => u.Email.Contains(filterEmail));
+            }
+
+            if (!string.IsNullOrEmpty(filterUserName))
+            {
+                result = result.Where(u => u.UserName.Contains(filterUserName));
+            }
+
+            //Show Item In Page
+            int take = 20;
+            int skip = (pageId - 1) * take;
+
+            UserForAdminViewModel list = new UserForAdminViewModel();
+            list.CurrentPage = pageId;
+            list.PageCount = result.Count() / take;
+            list.Users = result.OrderBy(u => u.CreateDate).Skip(skip).Take(take).ToList();
+
+            return list;
+        }
+
+        public async Task<int> AddUserFromAdminAsync(CreateUserViewModel user)
+        {
+            try
+            {
+                User addUser = new User();
+                var hashPass = _securityService.HashPassword(user.Password);
+                addUser.Password = hashPass;
+                addUser.ActiveCode = NameGenerator.GenerateUniqCode();
+                addUser.Email = user.Email;
+                addUser.IsActive = true;
+                addUser.CreateDate = DateTime.Now;
+                addUser.UserName = user.UserName;
+                addUser.UserId = user.Id;
+
+                #region Save Avatar
+
+                if (user.UserAvatar != null)
+                {
+                    string imagePath = "";
+                    addUser.UserAvatar = NameGenerator.GenerateUniqCode() + Path.GetExtension(user.UserAvatar.FileName);
+                    imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", addUser.UserAvatar);
+                    await using (var stream = new FileStream(imagePath, FileMode.Create))
+                    {
+                        await user.UserAvatar.CopyToAsync(stream);
+                    }
+                }
+
+                #endregion
+
+                return await AddUserAsync(addUser);
+            }
+            catch
+            {
+                return user.Id;
+            }
+        }
+
+        public async Task<EditUserViewModel> GetUserForShowInEditModeAsync(int userId)
+        {
+            var user = await _context.Users.Where(u => u.UserId == userId)
+                .Select(u => new EditUserViewModel()
+                {
+                    UserId = u.UserId,
+                    AvatarName = u.UserAvatar,
+                    Email = u.Email,
+                    UserName = u.UserName,
+                    UserRoles = u.UserRoles.Select(r => r.RoleId).ToList()
+                }).SingleAsync();
+            return user;
+        }
+
+        public async Task<int> EditUserFromAdminAsync(EditUserViewModel editUser)
+        {
+            User user = await GetUserByIdAsync(editUser.UserId);
+            user.Email = editUser.Email.Fixed();
+
+            //if (!string.IsNullOrWhiteSpace(editUser.Email))
+            //{
+            //    user.Email = editUser.Email.Fixed(); 
+            //}
+
+            if (!string.IsNullOrWhiteSpace(editUser.Password))
+            {
+                user.Password = _securityService.HashPassword(editUser.Password);
+            }
+
+            if (editUser.UserAvatar != null)
+            {
+                //Delete old Image
+                if (editUser.AvatarName != "Default.jpg")
+                {
+                    string deletePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", editUser.AvatarName);
+                    if (File.Exists(deletePath))
+                    {
+                        File.Delete(deletePath);
+                    }
+                }
+
+                //Save New Image
+                user.UserAvatar = NameGenerator.GenerateUniqCode() + Path.GetExtension(editUser.UserAvatar.FileName);
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", user.UserAvatar);
+                await using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await editUser.UserAvatar.CopyToAsync(stream);
+                }
+            }
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return editUser.UserId;
         }
 
         #endregion

@@ -1,0 +1,152 @@
+﻿@using MyShop.Core.Utilities.Convertors
+@model MyShop.Core.ViewModels.Users.UserForAdminViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>لیست کاربران | کنترل پنل</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+
+
+<section class="content-header">
+    <h1>لیست کاربران</h1>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">داشبرد</li>
+    </ol>
+</section>
+<br />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                لیست کاربران سایت
+            </div>
+            <!-- /.panel-header -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="datatable-example2_wrapper" class="dataTables_wrapper form-inline" role="grid">
+
+                        <div class="row">
+                            <form>
+                                <div class="col-sm-2 col-md-2">
+                                    <input type="text" name="filterUserName" class="form-control" placeholder="نام کاربری" />
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input type="text" name="filterEmail" class="form-control" placeholder="ایمیل" />
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <button type="submit" class="btn btn-info">جستجو</button>
+                                    <a class="btn btn-default btn-sm" href="/Admin/Users">خالی</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-12" style="margin: 10px 0;">
+                            <a asp-controller="CreateUser" asp-action="Index" asp-area="Users" class="btn btn-success">افزودن کاربر جدید</a>
+                        </div>
+
+                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                            <thead>
+                                <tr>
+                                    <th>نام کاربری</th>
+                                    <th>ایمیل</th>
+                                    <th>وضعیت</th>
+                                    <th>تاریخ ثبت نام</th>
+                                    <th>دستورات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model.Users)
+                                {
+                                    <tr>
+                                        <td>@user.UserName</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            @if (user.IsActive)
+                                            {
+                                                <p class="text-success">فعال</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-danger">غیر فعال</p>
+                                            }
+                                        </td>
+                                        <td>@user.CreateDate.ToShamsi()</td>
+                                        <td>
+                                            <a href="/Admin/Users/EditUser/@user.UserId" class="btn btn-info btn-sm">
+                                                ویرایش
+                                            </a>
+                                            <a href="/Admin/Users/DeleteUser/@user.UserId" class="btn btn-danger btn-sm">
+                                                حذف
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous" id="example2_previous">
+                                            <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">Previous</a>
+                                        </li>
+                                        @for (int i = 1; i <= Model.PageCount; i++)
+                                        {
+                                            <li class="paginate_button @((i == Model.CurrentPage) ? "active" : "")">
+                                                <a href="/admin/Users?PageId=@i" aria-controls="example2" data-dt-idx="1" tabindex="0">@i</a>
+                                            </li>
+                                        }
+
+                                        <li class="paginate_button next" id="example2_next">
+                                            <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/admin/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/admin/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/admin/dist/js/demo.js"></script>
+<!-- page script -->
+@*<script>
+        $(function () {
+            $('#example1').DataTable();
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            });
+        })
+    </script>*@
+

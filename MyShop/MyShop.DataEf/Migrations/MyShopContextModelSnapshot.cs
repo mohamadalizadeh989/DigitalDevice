@@ -64,24 +64,75 @@ namespace MyShop.DataEf.Migrations
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("ProductId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId1");
 
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entities.Permissions.Permission", b =>
+                {
+                    b.Property<int>("PermissionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ParentID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PermissionTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("PermissionId");
+
+                    b.HasIndex("ParentID");
+
+                    b.ToTable("Permission");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Permissions.RolePermission", b =>
+                {
+                    b.Property<int>("RP_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RP_Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RolePermission");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entities.Products.Product", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DemoFileName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -92,32 +143,63 @@ namespace MyShop.DataEf.Migrations
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("Price")
+                    b.Property<int>("LevelId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductImageName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("ProductLevelLevelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductStatusStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductTitle")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubGroup")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tags")
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
+
+                    b.HasKey("ProductId");
 
                     b.HasIndex("GroupId");
+
+                    b.HasIndex("ProductLevelLevelId");
+
+                    b.HasIndex("ProductStatusStatusId");
+
+                    b.HasIndex("SubGroup");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductComment", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -133,8 +215,8 @@ namespace MyShop.DataEf.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<byte>("Rate")
                         .HasColumnType("tinyint");
@@ -142,7 +224,7 @@ namespace MyShop.DataEf.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
                     b.HasIndex("ProductId");
 
@@ -153,7 +235,7 @@ namespace MyShop.DataEf.Migrations
 
             modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductGroup", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GroupId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -161,25 +243,68 @@ namespace MyShop.DataEf.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("GroupTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("GroupId");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("ProductGroups");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            GroupId = 1,
                             CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
-                            Title = "گروه اصلی"
+                            GroupTitle = "گروه اصلی",
+                            IsDelete = false
                         });
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductLevel", b =>
+                {
+                    b.Property<int>("LevelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LevelTitle")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("LevelId");
+
+                    b.ToTable("ProductLevels");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductStatus", b =>
+                {
+                    b.Property<int>("StatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StatusTitle")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("StatusId");
+
+                    b.ToTable("ProductStatuses");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Users.Role", b =>
@@ -188,6 +313,9 @@ namespace MyShop.DataEf.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
                     b.Property<string>("RoleTitle")
                         .IsRequired()
@@ -223,6 +351,9 @@ namespace MyShop.DataEf.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifyDate")
@@ -262,11 +393,12 @@ namespace MyShop.DataEf.Migrations
                         new
                         {
                             UserId = 1,
-                            ActiveCode = "bd49ddbe6eac4aaab65cef4998755fe5",
+                            ActiveCode = "75a0cfa4d863411680cdb64bc7a8e47b",
                             Bio = "از سال 86 تا 95 مشغول کار طراحی برد الکترونیک و برنامه نویسی با میکرو کنترلر های AVR به زبان بیسیک و کمی تجربه کار با میکروکنترلر های ARM به زبان c بودم و از سال 95 تا 1400 به صورت کامل به کار در حوزه املاک و مستغلات برای کسب تجربه در این زمینه و شناسایی نیازهای فراوان این فیلد مشغول بودم و با شروع آموزش برنامه نویسی C# و ASP.NET CORE از ابتدای سال 1400 تصمیم به انجام پروژه ها و رفع نیازهای این شغل گرفتم.rاز شروع با برنامه نویسی C# علاقه شدیدی در این زمینه برای من ایجاد شد.",
                             CreateDate = new DateTime(2021, 10, 27, 17, 35, 0, 0, DateTimeKind.Unspecified),
                             Email = "mohamadalizadeh989@gmail.com",
                             IsActive = true,
+                            IsDelete = false,
                             Mobile = "09121425058",
                             Password = "AHvMzibnzU/XiBqMNVTfHGGoJRDu9CglrvyJW1bDsRE9EnQm7E+mLc94t5fhOBLBvw==",
                             Skill = "C# Programmer",
@@ -369,24 +501,66 @@ namespace MyShop.DataEf.Migrations
 
                     b.HasOne("MyShop.Domain.Entities.Products.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId1");
 
                     b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entities.Permissions.Permission", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entities.Permissions.Permission", null)
+                        .WithMany("Permissions")
+                        .HasForeignKey("ParentID");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Permissions.RolePermission", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entities.Permissions.Permission", "Permission")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyShop.Domain.Entities.Users.Role", "Role")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entities.Products.Product", b =>
                 {
-                    b.HasOne("MyShop.Domain.Entities.Products.ProductGroup", "ProductGroup")
+                    b.HasOne("MyShop.Domain.Entities.Products.ProductGroup", "ProductGroupss")
                         .WithMany("Products")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductGroup");
+                    b.HasOne("MyShop.Domain.Entities.Products.ProductLevel", "ProductLevel")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductLevelLevelId");
+
+                    b.HasOne("MyShop.Domain.Entities.Products.ProductStatus", "ProductStatus")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductStatusStatusId");
+
+                    b.HasOne("MyShop.Domain.Entities.Products.ProductGroup", "Groupss")
+                        .WithMany("SubGroup")
+                        .HasForeignKey("SubGroup");
+
+                    b.Navigation("Groupss");
+
+                    b.Navigation("ProductGroupss");
+
+                    b.Navigation("ProductLevel");
+
+                    b.Navigation("ProductStatus");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductComment", b =>
@@ -406,6 +580,13 @@ namespace MyShop.DataEf.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductGroup", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entities.Products.ProductGroup", null)
+                        .WithMany("ProductGroups")
+                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Users.UserRole", b =>
@@ -451,6 +632,13 @@ namespace MyShop.DataEf.Migrations
                     b.Navigation("OrderDetails");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entities.Permissions.Permission", b =>
+                {
+                    b.Navigation("Permissions");
+
+                    b.Navigation("RolePermissions");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entities.Products.Product", b =>
                 {
                     b.Navigation("ProductComments");
@@ -458,11 +646,27 @@ namespace MyShop.DataEf.Migrations
 
             modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductGroup", b =>
                 {
+                    b.Navigation("ProductGroups");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("SubGroup");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductLevel", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entities.Products.ProductStatus", b =>
+                {
                     b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entities.Users.Role", b =>
                 {
+                    b.Navigation("RolePermissions");
+
                     b.Navigation("UserRoles");
                 });
 

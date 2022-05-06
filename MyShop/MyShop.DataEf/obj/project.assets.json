@@ -5808,6 +5808,7 @@
     "net5.0": [
       "Microsoft.EntityFrameworkCore >= 5.0.12",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.12",
+      "Microsoft.EntityFrameworkCore.Relational >= 5.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.12",
       "MyShop.Domain >= 1.0.0"
@@ -5834,7 +5835,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "http://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -5863,6 +5864,10 @@
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
+            "target": "Package",
+            "version": "[5.0.12, )"
+          },
+          "Microsoft.EntityFrameworkCore.Relational": {
             "target": "Package",
             "version": "[5.0.12, )"
           },

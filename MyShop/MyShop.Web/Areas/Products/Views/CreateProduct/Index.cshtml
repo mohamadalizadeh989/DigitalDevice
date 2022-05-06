@@ -1,0 +1,146 @@
+﻿@model MyShop.Web.Areas.Products.Controllers.CreateProductController
+@{
+    ViewData["Title"] = "افزودن محصول جدید";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>افزودن محصول جدید | کنترل پنل</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+
+<section class="content-header">
+    <h1>افزودن محصول جدید</h1>
+    <hr />
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">داشبرد</li>
+    </ol>
+</section>
+<br />
+
+<div class="row">
+    <div class="col-sm-12">
+        <form method="post" enctype="multipart/form-data" asp-antiforgery="true">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>عنوان محصول</label>
+                    <input type="text" asp-for="Product.ProductTitle" class="form-control">
+                    <span asp-validation-for="Product.ProductTitle"></span>
+                </div>
+                <div class="form-group">
+                    <label>گروه اصلی</label>
+                    <select class="form-control" asp-for="Product.GroupId" asp-items="@(ViewData["Groups"] as SelectList)"></select>
+                    <span asp-validation-for="Product.GroupId"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>گروه فرعی</label>
+                    <select class="form-control" asp-for="Product.SubGroup" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>
+                    <span asp-validation-for="Product.SubGroup"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>توضیحات کوتاه </label>
+                    @*<select class="form-control" asp-for="Product.Description" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>*@
+                    <textarea class="form-control" asp-for="Product.ShortDescription" rows="2"></textarea>
+
+                    <span asp-validation-for="Product.ShortDescription"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>توضیحات کامل</label>
+                    @*<select class="form-control" asp-for="Product.Description" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>*@
+                    <textarea class="form-control" asp-for="Product.Description" rows="10"></textarea>
+
+                    <span asp-validation-for="Product.Description"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>قیمت </label>
+                    <input type="number" asp-for="Product.ProductPrice" value="0" class="form-control"/>
+                    <span asp-validation-for="Product.ProductPrice"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>فایل دمو محصول</label>
+                    <input type="file" name="demoUp" />
+                    <span asp-validation-for="Product.ProductTitle"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>تخفیف </label>
+                    <input type="number" asp-for="Product.Discount" value="0" class="form-control" />
+                    <span asp-validation-for="Product.Discount"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>کلمات کلیدی </label>
+                    <input type="text" asp-for="Product.Tags" class="form-control">
+                    <p class="help-block">لطفا کلمات را با " - " جدا کنید</p>
+                    <span asp-validation-for="Product.Tags"></span>
+                </div>
+
+                <input type="submit" value="ذخیره اطلاعات" class="btn btn-success" />
+            </div>
+            <div class="col-sm-4">
+                <br />
+                <img class="thumbnail" id="imgProduct" alt="ProfilePicture" title="ProductPicture" src="/UserAvatar/Default.jpg" style="max-height: 295px" />
+                <div class="form-group">
+                    <label>انتخاب تصویر</label>
+                    <input type="file" name="imgProductUp" id="imgProductUp">
+                </div>
+
+                <div class="form-group">
+                    <label>سطح محصول</label>
+                    <select class="form-control" asp-for="Product.LevelId" asp-items="@(ViewData["Levels"] as SelectList)"></select>
+                    <span asp-validation-for="Product.LevelId"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>وضعیت محصول</label>
+                    <select class="form-control" asp-for="Product.StatusId" asp-items="@(ViewData["Statuses"] as SelectList)"></select>
+                    <span asp-validation-for="Product.StatusId"></span>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $("#Product_GroupId").change(function() {
+            $("#Product_SubGroup").empty();
+            $.getJSON("/home/GetSubGroups/" + $("#Product_GroupId :selected").val(),
+                function(data) {
+
+                    $.each(data,
+                        function() {
+                            $("#Product_SubGroup").append('<option value=' + this.value + '>' + this.text + '</option>');
+
+                        });
+                });
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgProduct').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgProductUp").change(function () {
+            readURL(this);
+        });
+    </script>
+}

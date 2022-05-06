@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using MyShop.Core.Services;
+using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Users;
 
 namespace MyShop.Web.Areas.UserPanel.Controllers
 {
+    
     public class HomeController : UserPanelController
     {
         private readonly IAccountService _accountService;

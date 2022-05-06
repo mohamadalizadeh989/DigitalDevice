@@ -2,6 +2,7 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Domain\bin\Debug\net5.0\MyShop.Domain.deps.jso
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\bin\Debug\net5.0\MyShop.Domain.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\bin\Debug\net5.0\ref\MyShop.Domain.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\bin\Debug\net5.0\MyShop.Domain.pdb
+G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.csproj.AssemblyReference.cache
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.GeneratedMSBuildEditorConfig.editorconfig
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.AssemblyInfoInputs.cache
 G:\AspNetCor\MyShop\MyShop\MyShop.Domain\obj\Debug\net5.0\MyShop.Domain.AssemblyInfo.cs

@@ -1,0 +1,101 @@
+﻿@using MyShop.Core.Utilities.Convertors
+@using MyShop.Domain.Entities.Users
+
+@{
+    ViewData["Title"] = "لیست نقش ها";
+    List<Role> roles = ViewData["Roles"] as List<Role>;
+}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>لیست نقش ها | کنترل پنل</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+
+
+<section class="content-header">
+    <h1>لیست نقش های سایت</h1>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">داشبرد</li>
+    </ol>
+</section>
+<br />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                لیست نقش ها
+            </div>
+            <!-- /.panel-header -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="datatable-example2_wrapper" class="dataTables_wrapper form-inline" role="grid">
+
+                        <div class="col-md-12" style="margin: 10px 0;">
+                            <a asp-controller="CreateRole" class="btn btn-success">افزودن نقش جدید</a>
+                        </div>
+
+                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                            <thead>
+                                <tr>
+                                    <th>عنوان نقش</th>
+                                    <th>دستورات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in roles)
+                                    {
+                                        <tr>
+                                            <td>@role.RoleTitle</td>
+                                            <td>
+                                                <a href="/Admin/Roles/EditRole/@role.RoleId" class="btn btn-info btn-sm">
+                                                    ویرایش
+                                                </a>
+                                                <a href="/Admin/Roles/DeleteRole/@role.RoleId" class="btn btn-danger btn-sm">
+                                                    حذف
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="/js/core/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/admin/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/admin/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/admin/dist/js/demo.js"></script>
+<!-- page script -->
+@*<script>
+        $(function () {
+            $('#example1').DataTable();
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            });
+        })
+    </script>*@
+

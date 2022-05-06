@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using MyShop.IoC;
 
@@ -13,7 +14,7 @@ namespace MyShop.Web
 {
     public class Startup
     {
-        public IConfiguration Configuration;
+        public readonly IConfiguration Configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -26,7 +27,10 @@ namespace MyShop.Web
         {
             services.AddIoCServices(Configuration);
             services.AddControllersWithViews();
-
+            //services.Configure<FormOptions>(options =>
+            //{
+            //    options.MultipartBodyLengthLimit = 6000000;
+            //});
             #region Authentication
             services.AddAuthentication(op =>
             {
@@ -41,8 +45,6 @@ namespace MyShop.Web
                 op.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
             });
             #endregion
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +54,12 @@ namespace MyShop.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            //else
+            //{
+            //    // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-6.0
+            //    app.UseExceptionHandler("/Error");
+            //    app.UseHsts();
+            //}
 
             app.UseStaticFiles();
             app.UseRouting();
@@ -63,13 +71,16 @@ namespace MyShop.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "/{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "/{controller=Home}/{action=Index}/{id?}");
+            });
+            app.Run(async u =>
+            {
+                await u.Response.WriteAsync("Hello World!");
             });
         }
     }

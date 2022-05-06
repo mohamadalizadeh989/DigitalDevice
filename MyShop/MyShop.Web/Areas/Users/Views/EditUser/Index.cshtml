@@ -1,0 +1,119 @@
+﻿@using MyShop.Domain.Entities.Users
+@model MyShop.Core.ViewModels.Users.EditUserViewModel
+
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    List<Role> roles = ViewData["Roles"] as List<Role>;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ویرایش کاربر | کنترل پنل</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+
+
+<section class="content-header">
+    <h1>ویرایش کاربر</h1>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">داشبرد</li>
+    </ol>
+</section>
+<br />
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="AvatarName" />
+            <div class="col-sm-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        اطلاعات کاربر
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label>نام کاربری :</label>
+                            @*<input type="text" asp-for="UserName" class="form-control">*@
+                            <label class="text-success">@Model.UserName</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>ایمیل :</label>
+                            <input type="email" asp-for="Email" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>کلمه عبور :</label>
+                            <input type="text" asp-for="Password" class="form-control">
+                            <p class="help-block">در صورت پر کردن این قسمت، کلمه عبور کاربر تغییر خواهد کرد</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>انتخاب نقش کاربر</label>
+
+                            @foreach (var item in roles)
+                            {
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="SelectedRoles" value="@item.RoleId" @((Model.UserRoles.Any(r => r == item.RoleId) ? "checked" : ""))>@item.RoleTitle
+                                    </label>
+                                </div>
+                            }
+
+                        </div>
+                        <input type="submit" value="ویرایش اطلاعات" class="btn btn-success" />
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            تصویر پروفایل
+                        </div>
+
+                        <div class="panel-body">
+                            <img class="thumbnail" id="imgAvatar" @*alt="ProfilePicture"*@ src="/UserAvatar/@Model.AvatarName" style="max-height: 290px" />
+                            <div class="form-group">
+                                <label>انتخاب تصویر</label>
+                                <input type="file" asp-for="UserAvatar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#UserAvatar").change(function () {
+            readURL(this);
+        });
+    </script>
+}

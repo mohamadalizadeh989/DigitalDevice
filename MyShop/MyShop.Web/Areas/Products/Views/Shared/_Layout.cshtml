@@ -1,0 +1,455 @@
+﻿@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <!--     Fonts and icons     -->
+
+    <partial name="_Styles" />
+
+</head>
+
+<body class="index-page sidebar-collapse">
+
+    <!-- responsive-header -->
+    <nav class="navbar direction-ltr fixed-top header-responsive">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="#pablo">
+                    <img src="/img/Logo2.png" height="24px" alt="">
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+                <div class="search-nav default">
+                    <form action="">
+                        <input type="text" placeholder="جستجو ...">
+                        <button type="submit"><img src="/img/search.png" alt=""></button>
+                    </form>
+                    <ul>
+                        <li><a href="#"><i class="now-ui-icons users_single-02"></i></a></li>
+                        <li><a href="#"><i class="now-ui-icons shopping_basket"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <div class="logo-nav-res default text-center">
+                    <a asp-action="Index" asp-controller="Home" asp-area="">
+                        <img src="/img/Logo2.png" height="36px" alt="">
+                    </a>
+                </div>
+                <ul class="navbar-nav default">
+                    <li class="sub-menu">
+                        <a href="#">کالای دیجیتال</a>
+                        <ul>
+                            <li class="sub-menu">
+                                <a href="#">لوازم جانبی گوشی</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">کیف و کاور گوشی</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">پاور بانک</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">هندزفری،هدفون</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">پایه نگهدارنده گوشی</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="#">گوشی موبایل</a>
+                                <ul>
+                                    <li>
+                                        <a href="#"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">آیفون اپل</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">هوآوی</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">ساعت هوشمند</a>
+                            </li>
+                            <li>
+                                <a href="#">اسپیکر بلوتوث و با سیم</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="#">موبایل</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Apple</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Asus</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">HTC</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">LG</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="#">آرایشی،بهداشت</a>
+                        <ul>
+                            <li class="sub-menu">
+                                <a href="#">لوازم جانبی گوشی</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">کیف و کاور گوشی</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">پاور بانک</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">هندزفری،هدفون</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">پایه نگهدارنده گوشی</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="#">گوشی موبایل</a>
+                                <ul>
+                                    <li>
+                                        <a href="#"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">آیفون اپل</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">هوآوی</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">ساعت هوشمند</a>
+                            </li>
+                            <li>
+                                <a href="#">اسپیکر بلوتوث و با سیم</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="#">موبایل</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Apple</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Asus</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">HTC</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">LG</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="#">خودرو،ابزار و اداری</a>
+                        <ul>
+                            <li class="sub-menu">
+                                <a href="#">لوازم جانبی گوشی</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">کیف و کاور گوشی</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">پاور بانک</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">هندزفری،هدفون</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">پایه نگهدارنده گوشی</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="#">گوشی موبایل</a>
+                                <ul>
+                                    <li>
+                                        <a href="#"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">آیفون اپل</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">هوآوی</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">ساعت هوشمند</a>
+                            </li>
+                            <li>
+                                <a href="#">اسپیکر بلوتوث و با سیم</a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="#">موبایل</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Apple</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Asus</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">HTC</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">LG</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">مد و پوشاک</a>
+                    </li>
+                    <li>
+                        <a href="#">خانه و آشپزخانه</a>
+                    </li>
+                    <li>
+                        <a href="#">کتاب،لوازم تحریر</a>
+                    </li>
+                    <li>
+                        <a href="#">ورزش و سفر</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- responsive-header -->
+
+    <div class="wrapper default">
+
+        <!-- header -->
+        <header class="main-header default">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-5">
+                        <div class="logo-area default">
+                            <a asp-action="Index" asp-controller="Home" asp-area="">
+                                <img src="/img/Logo2.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5 col-sm-8 col-7">
+                        <div class="search-area default">
+                            <form action="" class="search">
+                                <input type="text" id="gsearchsimple"
+                                       placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                                <ul class="list-group search-box-list">
+                                    <li class="list-group-item contsearch">
+                                        <a href="#" class="gsearch">
+                                            <i class="fa fa-clock-o"></i>
+                                            گوشی موبایل
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item contsearch">
+                                        <a href="#" class="gsearch">
+                                            <i class="fa fa-clock-o"></i>
+                                            لپ تاپ
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item contsearch">
+                                        <a href="#" class="gsearch">
+                                            <i class="fa fa-clock-o"></i>
+                                            کفش
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item contsearch">
+                                        <a href="#" class="gsearch">
+                                            <i class="fa fa-clock-o"></i>
+                                            مانتو
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item contsearch">
+                                        <a href="#" class="gsearch">
+                                            <i class="fa fa-clock-o"></i>
+                                            لباس ورزشی
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="localSearchSimple"></div>
+                                <button type="submit"><img src="/img/search.png" alt=""></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="user-login dropdown">
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
+                                   id="navbarDropdownMenuLink1">
+                                    @User.Claims.First(c => c.Type == ClaimTypes.Name).Value خوش آمدی 
+
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+
+                                    <hr>
+
+                                    <div class="dropdown-item">
+                                        <a asp-controller="UserPanel" asp-action="" asp-area="" class="dropdown-item-link">
+                                            <i class="now-ui-icons users_single-02"></i>
+                                            حساب کاربری
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <a asp-controller="Account" asp-action="LogoutAsync" class="dropdown-item-link">
+                                            <i class="fa fa-sign-out"></i>
+                                            خروج
+                                        </a>
+                                    </div>
+                                </ul>
+                            }
+                            else
+                            {
+
+                                <a href="#" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
+                                   id="navbarDropdownMenuLink1">
+                                    ورود / ثبت نام
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                    <div class="dropdown-item">
+                                        <a asp-action="Login" asp-controller="Account" class="btn btn-info">ورود به دیجیتال دیوایس</a>
+                                    </div>
+                                    <div class="dropdown-item font-weight-bold">
+                                        <span>کاربر جدید هستید؟</span>
+                                        <a asp-action="Register" asp-controller="Account" asp-area="">ثبت‌نام</a>
+                                    </div>
+                                    <hr>
+                                    <div class="dropdown-item">
+                                        <a asp-area="UserPanel" asp-controller="Home" asp-action="Index" class="dropdown-item-link">
+                                            <i class="now-ui-icons users_single-02"></i>
+                                            پروفایل
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <a href="#" class="dropdown-item-link">
+                                            <i class="now-ui-icons shopping_bag-16"></i>
+                                            پیگیری سفارش
+                                        </a>
+                                    </div>
+                                </ul>
+                            }
+
+                        </div>
+                        <div class="cart dropdown">
+                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
+                                <img src="/img/shopping-cart.png" alt="">
+                                سبد خرید
+                                <span class="count-cart">2</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                <div class="basket-header">
+                                    <div class="basket-total">
+                                        <span>مبلغ کل خرید:</span>
+                                        <span> ۲۳,۵۰۰</span>
+                                        <span> تومان</span>
+                                    </div>
+                                    <a href="#" class="basket-link">
+                                        <span>مشاهده سبد خرید</span>
+                                        <div class="basket-arrow"></div>
+                                    </a>
+                                </div>
+                                <ul class="basket-list">
+                                    <li>
+                                        <a href="#" class="basket-item">
+                                            <button class="basket-item-remove"></button>
+                                            <div class="basket-item-content">
+                                                <div class="basket-item-image">
+                                                    <img alt="" src="/img/cart/2324935.jpg">
+                                                </div>
+                                                <div class="basket-item-details">
+                                                    <div class="basket-item-title">
+                                                        هندزفری بلوتوث مدل S530
+                                                    </div>
+                                                    <div class="basket-item-params">
+                                                        <div class="basket-item-props">
+                                                            <span> ۱ عدد</span>
+                                                            <span>رنگ مشکی</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <a href="#" class="basket-submit">ورود و ثبت سفارش</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main menu -->
+            @await Component.InvokeAsync("ProductGroupComponent")
+            <!-- /main menu -->
+        </header>
+
+        <!-- content -->
+        @RenderBody()
+        <!-- /content -->
+        <!-- footer -->
+        <partial name="_Footer" />
+        <!-- /footer -->
+
+    </div>
+
+@await RenderSectionAsync("Scripts", false)
+
+<!--   Core JS Files   -->
+    <script src="/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Share Library etc -->
+    <script src="/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="/js/now-ui-kit.js" type="text/javascript"></script>
+    <!--  CountDown -->
+    <script src="/js/plugins/countdown.min.js" type="text/javascript"></script>
+    <!--  Plugin for Sliders -->
+    <script src="/js/plugins/owl.carousel.min.js" type="text/javascript"></script>
+    <!--  Jquery easing -->
+    <script src="/js/plugins/jquery.easing.1.3.min.js" type="text/javascript"></script>
+    <!--  LocalSearch -->
+    <script src="/js/plugins/JsLocalSearch.js" type="text/javascript"></script>
+    <!-- Main Js -->
+    <script src="/js/main.js" type="text/javascript"></script>
+
+</body>
+
+</html>
