@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Core.Generator;
+using MyShop.Core.Utilities.Convertors;
+using MyShop.Core.Utilities.Security;
 using MyShop.Core.ViewModels.Products;
 using MyShop.DataEf.Contexts;
 using MyShop.Domain.Entities.Products;
@@ -88,7 +90,7 @@ namespace MyShop.Core.Services
 
             //TODO Check Image
 
-            if (imgProduct != null)
+            if (imgProduct != null && imgProduct.IsImage())
             {
                 product.ProductImageName= NameGenerator.GenerateUniqCode() + Path.GetExtension(imgProduct.FileName);
                 string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Product/image", product.ProductImageName);
@@ -96,6 +98,10 @@ namespace MyShop.Core.Services
                 {
                     await imgProduct.CopyToAsync(stream);
                 }
+
+                ImageConvertor imgResize=new ImageConvertor();
+                string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Product/thumb", product.ProductImageName);
+                imgResize.Image_resize(imagePath, thumbPath,150);
             }
 
             if (productDemo != null)

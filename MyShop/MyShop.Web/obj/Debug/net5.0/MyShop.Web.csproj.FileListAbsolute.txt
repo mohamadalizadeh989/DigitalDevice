@@ -259,3 +259,9 @@ G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\ref\MyShop.Web.dll
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.pdb
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.genruntimeconfig.cache
 G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\web.config
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\System.Drawing.Common.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+G:\AspNetCor\MyShop\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.MvcApplicationPartsAssemblyInfo.cs

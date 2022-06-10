@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "leb+D67Ig5JFKbyVd57B0WoC4ndizxiBlqdkNOaJg77v8vQ49QMJmkhO7STEzeS4Qfvpx2DHx7ZvzmJqK4PsHg==",
+  "dgSpecHash": "5Wnlb7/V59jjNKhbU3DNkysHBVU/ycc6BObgI8ot5tEUWxE/uJrTyZyrkmPUhxy9GFFRX6TGnmoBE8BXHTaeCQ==",
   "success": true,
   "projectFilePath": "G:\\AspNetCor\\MyShop\\MyShop\\MyShop.Core\\MyShop.Core.csproj",
   "expectedPackageFiles": [
@@ -91,7 +91,7 @@
     "C:\\Users\\Alizzzz\\.nuget\\packages\\microsoft.visualstudio.validation\\17.0.43\\microsoft.visualstudio.validation.17.0.43.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
-    "C:\\Users\\Alizzzz\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Alizzzz\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
@@ -128,7 +128,7 @@
     "C:\\Users\\Alizzzz\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
-    "C:\\Users\\Alizzzz\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
+    "C:\\Users\\Alizzzz\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\system.dynamic.runtime\\4.0.11\\system.dynamic.runtime.4.0.11.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\Alizzzz\\.nuget\\packages\\system.globalization.calendars\\4.3.0\\system.globalization.calendars.4.3.0.nupkg.sha512",
