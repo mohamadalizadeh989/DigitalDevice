@@ -37,6 +37,7 @@ namespace MyShop.Web.Controllers
 
                 var payment = new ZarinpalSandbox.Payment(wallet.Amount);
                 var res = payment.Verification(authority).Result;
+                
                 if (res.Status == 100)
                 {
                     ViewBag.code = res.RefId;
