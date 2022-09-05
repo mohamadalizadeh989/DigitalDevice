@@ -27,7 +27,6 @@ namespace MyShop.Core.Senders
             SmtpServer.EnableSsl = true;
 
             SmtpServer.Send(mail);
-
         }
     }
 }

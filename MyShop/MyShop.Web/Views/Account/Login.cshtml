@@ -32,125 +32,127 @@
 </nav>
 
 <body>
-    <div class="wrapper default">
-        <div class="container">
-            <div class="row">
-                <div class="main-content col-12 col-md-7 col-lg-5 mx-auto">
-                    <div class="account-box">
-                        <a href="/" class="logo">
-                            <img src="/img/logo2.png" alt="">
-                        </a>
+<div class="wrapper default">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-12 col-md-7 col-lg-5 mx-auto">
+                <div class="account-box">
+                    <a href="/" class="logo">
+                        <img src="/img/logo2.png" alt="">
+                    </a>
 
-                        @if (ViewBag.EditProfile == true)
-                        {
+                    @if (ViewBag.EditProfile == true)
+                    {
+                        <br />
+                        <div><p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">بدلیل ویرایش پروفایل و بارگزاری مجدد اطلاعات لطفا مجدد لاگین کنید</p></div>
+                    }
+
+                    @if (ViewBag.IsSuccess == null)
+                    {
+                        <div class="account-box-title text-right">ورود به دیجیتال دیوایس</div>
+                    }
+
+                    @if (ViewBag.IsSuccess != null)
+                    {
+                        <br />
+                        <div><p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">ورود با موفقیت انجام شد</p></div>
+
+                        <script>
+                            // Your delay in milliseconds
+                            var delay = 3000;
+                            setTimeout(function () { window.location = "https://localhost:44351/UserPanel"; }, delay);
+                        </script>
+                    }
+
+                    <div class="account-box-content">
+                        <form asp-action="Login" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
+
+                            <div class="form-account-row">
+                                <label asp-for="Email" class="input-label"><i class="now-ui-icons users_single-02"></i></label>
+                                <input asp-for="Email" class="input-field" type="email"
+                                       placeholder="ایمیل یا شماره موبایل خود را وارد نمایید">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-account-row">
+                                <label asp-for="Password" class="input-label">
+                                    <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                </label>
+                                <input asp-for="Password" class="input-field" type="password"
+                                       placeholder="کلمه عبور خود را وارد نمایید">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
                             <br />
-                            <div><p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">بدلیل ویرایش پروفایل و بارگزاری مجدد اطلاعات لطفا مجدد لاگین کنید</p></div>
-                        }
 
-                        @if (ViewBag.IsSuccess == null)
-                        {
-                            <div class="account-box-title text-right">ورود به دیجیتال دیوایس</div>
-                        }
+                            <div class="form-account-agree">
+                                <label class="checkbox-form checkbox-primary">
+                                    <input asp-for="IsRemember">
+                                    <span class="checkbox-check"></span>
+                                </label>
+                                <label asp-for="IsRemember">مرا به خاطر بسپار!</label>
+                            </div>
 
-                        @if (ViewBag.IsSuccess != null)
-                        {
-                            <br />
-                            <div><p class="alert alert-info col-12 col-md-1 col-lg-11 mx-auto text-center">ورود با موفقیت انجام شد</p></div>
+                            <div class="form-account-title">
+                                <a asp-action="ForgotPassword" asp-controller="Account" asp-area="" class="btn-link-border">کلمه عبور خود را فراموش کرده ام!</a>
+                            </div>
 
-                            <script>
-                                // Your delay in milliseconds
-                                var delay = 3000;
-                                setTimeout(function () { window.location = "https://localhost:44351/UserPanel"; }, delay);
-                            </script>
-                        }
+                            <hr />
 
-                        <div class="account-box-content">
-                            <form asp-action="Login" asp-controller="Account" asp-area="" method="post" asp-antiforgery="true" class="form-account">
-
-                                <div class="form-account-row">
-                                    <label asp-for="Email" class="input-label"><i class="now-ui-icons users_single-02"></i></label>
-                                    <input asp-for="Email" class="input-field" type="email"
-                                           placeholder="ایمیل یا شماره موبایل خود را وارد نمایید">
-                                    <span asp-validation-for="Email" class="text-danger"></span>
+                            <div class="form-account-row form-account-submit">
+                                <div class="parent-btn">
+                                    <button type="submit" class="dk-btn dk-btn-info">
+                                        ورود به دیجیتال دیوایس
+                                        <i class="fa fa-sign-in"></i>
+                                    </button>
                                 </div>
+                            </div>
 
-                                <div class="form-account-row">
-                                    <label asp-for="Password" class="input-label">
-                                        <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                                    </label>
-                                    <input asp-for="Password" class="input-field" type="password"
-                                           placeholder="کلمه عبور خود را وارد نمایید">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-
-                                <br />
-
-                                <div class="form-account-agree">
-                                    <label class="checkbox-form checkbox-primary">
-                                        <input asp-for="IsRemember">
-                                        <span class="checkbox-check"></span>
-                                    </label>
-                                    <label asp-for="IsRemember">مرا به خاطر بسپار!</label>
-                                </div>
-
-                                <div class="form-account-title">
-                                    <a asp-action="ForgotPassword" asp-controller="Account" asp-area="" class="btn-link-border">کلمه عبور خود را فراموش کرده ام!</a>
-                                </div>
-
-                                <hr />
-
-                                <div class="form-account-row form-account-submit">
-                                    <div class="parent-btn">
-                                        <button type="submit" class="dk-btn dk-btn-info">
-                                            ورود به دیجیتال دیوایس
-                                            <i class="fa fa-sign-in"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="account-box-footer">
-                            <span>کاربر جدید هستید؟</span>
-                            <a asp-action="Register" asp-controller="Account" asp-area="" class="btn-link-border">ثبت‌نام در دیجیتال دیوایس</a>
-                        </div>
+                        </form>
+                    </div>
+                    <div class="account-box-footer">
+                        <span>کاربر جدید هستید؟</span>
+                        <a asp-action="Register" asp-controller="Account" asp-area="" class="btn-link-border">ثبت‌نام در دیجیتال دیوایس</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <footer class="mini-footer">
-            <nav>
-                <div class="container">
-                    <ul class="menu">
-                        <li>
-                            <a href="#">درباره دیجیتال دیوایس</a>
-                        </li>
-                        <li>
-                            <a href="#">فرصت‌های شغلی</a>
-                        </li>
-                        <li>
-                            <a href="#">تماس با ما</a>
-                        </li>
-                        <li>
-                            <a href="#">همکاری با سازمان‌ها</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-            <div class="copyright-bar">
-                <div class="container">
-                    <p>
-                        استفاده از مطالب فروشگاه اینترنتی دیجیتال دیوایس فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است.
-                        کلیه حقوق این سایت متعلق
-                        به شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجیتال دیوایس) می‌باشد.
-                    </p>
-                </div>
-            </div>
-        </footer>
     </div>
+
+    <footer class="mini-footer">
+        <nav>
+            <div class="container">
+                <ul class="menu">
+                    <li>
+                        <a href="#">درباره دیجیتال دیوایس</a>
+                    </li>
+                    <li>
+                        <a href="#">فرصت‌های شغلی</a>
+                    </li>
+                    <li>
+                        <a href="#">تماس با ما</a>
+                    </li>
+                    <li>
+                        <a href="#">همکاری با سازمان‌ها</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <div class="copyright-bar">
+            <div class="container">
+                <p>
+                    استفاده از مطالب فروشگاه اینترنتی دیجیتال دیوایس فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است.
+                    کلیه حقوق این سایت متعلق
+                    به شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجیتال دیوایس) می‌باشد.
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
 </body>
+
 <!--   Core JS Files   -->
 <script src="/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="/js/core/popper.min.js" type="text/javascript"></script>
